@@ -16,6 +16,10 @@
 
   <packaging>pom</packaging>
 
+  <modules>
+    <module>flex-ui-core</module>
+  </modules>
+
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
