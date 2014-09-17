@@ -44,12 +44,33 @@
             <target>1.7</target>
           </configuration>
         </plugin>
+        <plugin>
+          <groupId>com.mycila.maven-license-plugin</groupId>
+          <artifactId>maven-license-plugin</artifactId>
+          <version>${mvn.license.plugin.version}</version>
+        </plugin>
       </plugins>
     </pluginManagement>
 
     <plugins>
       <plugin>
         <artifactId>maven-compiler-plugin</artifactId>
+      </plugin>
+      <plugin>
+        <groupId>com.mycila.maven-license-plugin</groupId>
+        <artifactId>maven-license-plugin</artifactId>
+        <configuration>
+          <header>https://raw.githubusercontent.com/flex-oss/flex-oss-parent/master/etc/license/header.txt</header>
+          <strictCheck>true</strictCheck>
+          <excludes>
+            <exclude>.gitignore</exclude>
+            <exclude>.idea/**</exclude>
+            <exclude>README.md</exclude>
+            <exclude>.travis.yml</exclude>
+            <exclude>src/test/resources/**</exclude>
+            <exclude>src/main/resources/org/cdlflex/ui/resource/**</exclude>
+          </excludes>
+        </configuration>
       </plugin>
     </plugins>
   </build>
