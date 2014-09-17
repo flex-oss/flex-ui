@@ -17,6 +17,7 @@
   <packaging>pom</packaging>
 
   <modules>
+    <module>flex-ui</module>
     <module>flex-ui-core</module>
   </modules>
 
