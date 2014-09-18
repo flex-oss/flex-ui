@@ -19,6 +19,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import org.apache.wicket.behavior.AttributeAppender;
+import org.apache.wicket.markup.ComponentTag;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
 import org.cdlflex.ui.util.Strings;
@@ -83,12 +84,12 @@ public class CssClassNameAppender extends AttributeAppender {
      * the separator again.
      * <p/>
      * Example: A string "a b a", using a whitespace as separator, would yield "a b".
-     * 
+     *
      * @param separator the separator
      * @param values the values to normalize together
      * @return a normalized string
      */
-    protected String normalize(String separator, String... values) {
+    protected static String normalize(String separator, String... values) {
         Set<String> set = new HashSet<>(values.length);
 
         for (String value : values) {
@@ -100,6 +101,20 @@ public class CssClassNameAppender extends AttributeAppender {
         }
 
         return Strings.join(separator, set);
+    }
+
+    /**
+     * Appends the given CSS classes to the given ComponentTag. It preserves the class attributes set in the
+     * ComponentTag. CSS classes are never duplicated.
+     *
+     * @param tag the component tag
+     * @param cssClasses the classes to append
+     */
+    public static void append(ComponentTag tag, String... cssClasses) {
+        String currentValue = tag.getAttribute("class");
+        String appendValue = Strings.join(" ", cssClasses);
+
+        tag.put("class", normalize(" ", currentValue, appendValue));
     }
 
 }
