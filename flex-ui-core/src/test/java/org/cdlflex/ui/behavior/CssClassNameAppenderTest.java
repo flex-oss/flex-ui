@@ -18,29 +18,25 @@ import static org.junit.Assert.assertTrue;
 
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.markup.html.basic.Label;
-import org.apache.wicket.mock.MockApplication;
 import org.apache.wicket.util.tester.TagTester;
-import org.apache.wicket.util.tester.WicketTester;
+import org.cdlflex.ui.AbstractWicketPageTest;
 import org.junit.Before;
 import org.junit.Test;
 
-public class CssClassNameAppenderTest {
+public class CssClassNameAppenderTest extends AbstractWicketPageTest {
 
-    private WicketTester tester;
     private LabelPage page;
 
     @Before
     public void setUp() {
-        tester = new WicketTester(new MockApplication());
-
         page = new LabelPage();
     }
 
     @Test
     public void addClassToTagContainingNoClasses_appendsClassCorrectly() throws Exception {
         page.label.add(new CssClassNameAppender("a"));
-        tester.startPage(page);
-        TagTester tag = TagTester.createTagByAttribute(tester.getLastResponse().getDocument(), "id", "label");
+
+        TagTester tag = createTagById(render(page), "label");
 
         assertTrue(tag.getAttributeIs("class", "a"));
     }
@@ -51,8 +47,7 @@ public class CssClassNameAppenderTest {
         page.label.add(new CssClassNameAppender("b"));
         page.label.add(new CssClassNameAppender("a"));
 
-        tester.startPage(page);
-        TagTester tag = TagTester.createTagByAttribute(tester.getLastResponse().getDocument(), "id", "label");
+        TagTester tag = createTagById(render(page), "label");
 
         assertEquals("b a", tag.getAttribute("class"));
     }
@@ -62,8 +57,7 @@ public class CssClassNameAppenderTest {
         page.label.add(new CssClassNameAppender("a"));
         page.label.add(new CssClassNameAppender("a"));
 
-        tester.startPage(page);
-        TagTester tag = TagTester.createTagByAttribute(tester.getLastResponse().getDocument(), "id", "label");
+        TagTester tag = createTagById(render(page), "label");
 
         assertEquals("a", tag.getAttribute("class"));
     }
@@ -72,9 +66,7 @@ public class CssClassNameAppenderTest {
     public void addClassToTagContainingSingleClass_appendsClassCorrectly() throws Exception {
         page.labelWithClass.add(new CssClassNameAppender("a"));
 
-        tester.startPage(page);
-        TagTester tag =
-            TagTester.createTagByAttribute(tester.getLastResponse().getDocument(), "id", "label-with-class");
+        TagTester tag = createTagById(render(page), "label-with-class");
 
         assertEquals("label a", tag.getAttribute("class"));
     }
@@ -85,9 +77,7 @@ public class CssClassNameAppenderTest {
         page.labelWithClass.add(new CssClassNameAppender("b"));
         page.labelWithClass.add(new CssClassNameAppender("a"));
 
-        tester.startPage(page);
-        TagTester tag =
-            TagTester.createTagByAttribute(tester.getLastResponse().getDocument(), "id", "label-with-class");
+        TagTester tag = createTagById(render(page), "label-with-class");
 
         assertEquals("b label a", tag.getAttribute("class"));
     }
@@ -96,9 +86,7 @@ public class CssClassNameAppenderTest {
     public void addSameClassToTagContainingSingleClass_doesNotAppendClass() throws Exception {
         page.labelWithClass.add(new CssClassNameAppender("label"));
 
-        tester.startPage(page);
-        TagTester tag =
-            TagTester.createTagByAttribute(tester.getLastResponse().getDocument(), "id", "label-with-class");
+        TagTester tag = createTagById(render(page), "label-with-class");
 
         assertEquals("label", tag.getAttribute("class"));
     }
