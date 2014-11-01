@@ -27,7 +27,7 @@ public class BootstrapCssResourceReference extends ManagedCssResourceReference {
     }
 
     public BootstrapCssResourceReference(String version) {
-        super("bootstrap", "css/bootstrap.min.js", version);
+        super("bootstrap", "css/bootstrap.min.css", version);
     }
 
     public BootstrapCssResourceReference(Class<?> scope, String name) {

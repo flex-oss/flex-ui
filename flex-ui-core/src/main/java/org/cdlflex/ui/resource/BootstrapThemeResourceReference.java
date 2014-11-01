@@ -27,7 +27,7 @@ public class BootstrapThemeResourceReference extends ManagedCssResourceReference
     }
 
     public BootstrapThemeResourceReference(String version) {
-        super("bootstrap", "css/bootstrap-theme.min.js", version);
+        super("bootstrap", "css/bootstrap-theme.min.css", version);
     }
 
     public BootstrapThemeResourceReference(Class<?> scope, String name) {
