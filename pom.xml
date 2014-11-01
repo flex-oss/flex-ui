@@ -38,6 +38,19 @@
     <module>flex-ui-examples</module>
   </modules>
 
+  <licenses>
+    <license>
+      <name>The Apache License, Version 2.0</name>
+      <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+    </license>
+  </licenses>
+
+  <scm>
+    <connection>scm:git:git://github.com:flex-oss/flex-ui.git</connection>
+    <developerConnection>scm:git:git@github.com:flex-oss/flex-ui.git</developerConnection>
+    <url>https://github.com/flex-oss/flex-ui</url>
+  </scm>
+
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
