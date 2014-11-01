@@ -13,6 +13,10 @@
  */
 package org.cdlflex.ui.resource;
 
+import org.apache.wicket.markup.head.HeaderItem;
+import org.apache.wicket.resource.JQueryResourceReference;
+import org.cdlflex.ui.util.ResourceReferences;
+
 /**
  * Resource reference for the main bootstrap java script.
  */
@@ -40,5 +44,10 @@ public class BootstrapJsResourceReference extends ManagedJsResourceReference {
      */
     public static BootstrapJsResourceReference get() {
         return INSTANCE;
+    }
+
+    @Override
+    public Iterable<? extends HeaderItem> getDependencies() {
+        return ResourceReferences.join(super.getDependencies(), JQueryResourceReference.get());
     }
 }

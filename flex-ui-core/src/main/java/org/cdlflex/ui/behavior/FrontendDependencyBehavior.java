@@ -19,13 +19,10 @@ import java.util.List;
 
 import org.apache.wicket.Component;
 import org.apache.wicket.behavior.Behavior;
-import org.apache.wicket.markup.head.CssReferenceHeaderItem;
 import org.apache.wicket.markup.head.HeaderItem;
 import org.apache.wicket.markup.head.IHeaderResponse;
-import org.apache.wicket.markup.head.JavaScriptHeaderItem;
-import org.apache.wicket.request.resource.CssResourceReference;
-import org.apache.wicket.request.resource.JavaScriptResourceReference;
 import org.apache.wicket.request.resource.ResourceReference;
+import org.cdlflex.ui.util.ResourceReferences;
 
 /**
  * Behavior that adds all added ResourceReferences as HeaderItems to the IHeaderResponse. It distinguishes between
@@ -72,7 +69,7 @@ public class FrontendDependencyBehavior extends Behavior {
      * @return a list of HeaderItems
      */
     public List<HeaderItem> getHeaderItems() {
-        return asHeaderItems(getResourceReferences());
+        return ResourceReferences.asHeaderItems(getResourceReferences());
     }
 
     /**
@@ -82,46 +79,6 @@ public class FrontendDependencyBehavior extends Behavior {
      */
     public List<ResourceReference> getResourceReferences() {
         return references;
-    }
-
-    /**
-     * Converts the given ResourceReference items in the list to HeaderItems.
-     * 
-     * @param referenceList the ResourceReferences to convert
-     * @return a list of HeaderItems
-     */
-    protected List<HeaderItem> asHeaderItems(List<ResourceReference> referenceList) {
-        List<HeaderItem> items = new ArrayList<>();
-
-        for (ResourceReference reference : referenceList) {
-            if (reference instanceof JavaScriptResourceReference) {
-                items.add(asHeaderItem((JavaScriptResourceReference) reference));
-            } else if (reference instanceof CssResourceReference) {
-                items.add(asHeaderItem((CssResourceReference) reference));
-            }
-        }
-
-        return items;
-    }
-
-    /**
-     * Returns the given CssResourceReference as CssReferenceHeaderItem.
-     * 
-     * @param reference the reference to convert
-     * @return a header item representing the reference
-     */
-    protected HeaderItem asHeaderItem(CssResourceReference reference) {
-        return CssReferenceHeaderItem.forReference(reference);
-    }
-
-    /**
-     * Returns the given JavaScriptResourceReference as JavaScriptHeaderItem.
-     * 
-     * @param reference the reference to convert
-     * @return a header item representing the reference
-     */
-    protected HeaderItem asHeaderItem(JavaScriptResourceReference reference) {
-        return JavaScriptHeaderItem.forReference(reference);
     }
 
 }

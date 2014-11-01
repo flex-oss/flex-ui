@@ -229,6 +229,23 @@ public final class Collections {
     }
 
     /**
+     * Adds every element in the given Iterable into a new list and returns it.
+     * 
+     * @param iterable the iterable
+     * @param <T> the element type
+     * @return a new array list of all elements in the iterable
+     */
+    public static <T> List<T> asList(Iterable<T> iterable) {
+        List<T> list = new ArrayList<>();
+
+        for (T e : iterable) {
+            list.add(e);
+        }
+
+        return list;
+    }
+
+    /**
      * A functional interface for a callback that may throw a checked exception.
      *
      * @param <A> argument type
