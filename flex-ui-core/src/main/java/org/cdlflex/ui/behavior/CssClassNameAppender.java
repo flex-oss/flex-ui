@@ -22,6 +22,7 @@ import org.apache.wicket.behavior.AttributeAppender;
 import org.apache.wicket.markup.ComponentTag;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
+import org.cdlflex.ui.markup.css.ICssClassNameProvider;
 import org.cdlflex.ui.util.Strings;
 
 /**
@@ -52,6 +53,8 @@ import org.cdlflex.ui.util.Strings;
  *
  */
 public class CssClassNameAppender extends AttributeAppender {
+
+    private static final long serialVersionUID = 1L;
 
     /**
      * The name of the html class attribute name.
@@ -115,6 +118,28 @@ public class CssClassNameAppender extends AttributeAppender {
         String appendValue = Strings.join(" ", cssClasses);
 
         tag.put("class", normalize(" ", currentValue, appendValue));
+    }
+
+    /**
+     * Appends the css class the given ICssClassNameProvider provides to the given COmponentTag. It preserves the class
+     * attributes set in the ComponentTag. CSS classes are never duplicated.
+     * 
+     * @param tag the component tag
+     * @param classNameProvider the class name provider
+     */
+    public static void append(ComponentTag tag, ICssClassNameProvider classNameProvider) {
+        append(tag, classNameProvider.getCssClassName());
+    }
+
+    /**
+     * Appends the css class the given ICssClassNameProvider provides to the given COmponentTag. It preserves the class
+     * attributes set in the ComponentTag. CSS classes are never duplicated.
+     *
+     * @param tag the component tag
+     * @param classNameProvider the class name provider
+     */
+    public static void append(ComponentTag tag, IModel<? extends ICssClassNameProvider> classNameProvider) {
+        append(tag, classNameProvider.getObject());
     }
 
 }
