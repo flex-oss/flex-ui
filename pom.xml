@@ -35,6 +35,7 @@
   <modules>
     <module>flex-ui</module>
     <module>flex-ui-core</module>
+    <module>flex-ui-fruit</module>
     <module>flex-ui-examples</module>
   </modules>
 

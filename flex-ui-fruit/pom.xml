@@ -1,0 +1,57 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <groupId>org.cdlflex</groupId>
+    <artifactId>flex-ui-parent</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <relativePath>..</relativePath>
+  </parent>
+
+  <artifactId>flex-ui-fruit</artifactId>
+
+  <packaging>bundle</packaging>
+
+  <name>Flex UI :: Fruit</name>
+
+  <description>
+    flex-fruit integration for flex-ui
+  </description>
+
+  <properties>
+    <bundle.namespace>${project.groupId}.ui.fruit</bundle.namespace>
+    <bundle.symbolicName>${project.groupId}.ui.fruit</bundle.symbolicName>
+
+    <fruit.version>0.1.0</fruit.version>
+  </properties>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.felix</groupId>
+        <artifactId>maven-bundle-plugin</artifactId>
+      </plugin>
+    </plugins>
+  </build>
+
+  <dependencies>
+    <dependency>
+      <groupId>org.apache.wicket</groupId>
+      <artifactId>wicket-core</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>org.cdlflex</groupId>
+      <artifactId>fruit-core</artifactId>
+      <version>${fruit.version}</version>
+    </dependency>
+
+    <!-- test dependencies -->
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <scope>test</scope>
+    </dependency>
+  </dependencies>
+</project>
