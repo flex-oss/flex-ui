@@ -54,7 +54,8 @@ public final class Buttons {
      * Defines all possible button types.
      */
     public static enum Type implements ICssClassNameProvider {
-        DEFAULT(""), // Standard gray button with gradient
+        NONE(""), // no specific css class
+        DEFAULT("btn-default"), // Standard gray button with gradient
         MENU(""), // Menu button which has no default css class name
         PRIMARY("btn-primary"), // Provides extra visual weight and identifies the primary action in a set of buttons
         INFO("btn-info"), // Used as an alternate to the default styles
