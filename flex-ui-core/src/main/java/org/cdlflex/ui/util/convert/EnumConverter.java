@@ -17,32 +17,46 @@ import java.util.Locale;
 
 import org.apache.wicket.util.convert.ConversionException;
 import org.apache.wicket.util.convert.IConverter;
+import org.cdlflex.ui.util.Strings;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
- * Simplified version of an IConverter that converts objects to string (i.e. a functional interface for externalising a
- * "toString" method.
+ * Converts Enum types to strings and vice versa.
  * 
- * @param <T> The type to be converted
+ * @param <T> The enum type
  */
-public abstract class ToStringConverter<T> implements IConverter<T> {
+public class EnumConverter<T extends Enum<T>> implements IConverter<T> {
+
+    private static final Logger LOG = LoggerFactory.getLogger(EnumConverter.class);
 
     private static final long serialVersionUID = 1L;
 
+    private Class<T> enumType;
+
+    public EnumConverter() {
+        this(null);
+    }
+
+    public EnumConverter(Class<T> enumType) {
+        this.enumType = enumType;
+    }
+
     @Override
     public T convertToObject(String value, Locale locale) throws ConversionException {
-        throw new UnsupportedOperationException("ToStringConverter can only convert one way");
+        if (value == null || Strings.isEmpty(value)) {
+            return null;
+        }
+        if (enumType == null) {
+            LOG.warn("Enum type is not set, can not convert value");
+            return null;
+        }
+
+        return Enum.valueOf(enumType, value);
     }
 
     @Override
     public String convertToString(T value, Locale locale) {
-        return convertToString(value);
+        return value.name();
     }
-
-    /**
-     * Convert the given value to a string.
-     * 
-     * @param value the value to convert
-     * @return a string representation of the value
-     */
-    public abstract String convertToString(T value);
 }
