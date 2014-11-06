@@ -13,7 +13,6 @@
  */
 package org.cdlflex.ui.behavior;
 
-import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 import org.apache.wicket.Component;
@@ -40,7 +39,9 @@ public class ButtonBehaviorTest extends AbstractWicketPageTest {
         button.add(new ButtonBehavior());
 
         TagTester tag = createTag(render(page), button);
-        assertEquals("btn", tag.getAttribute("class"));
+
+        assertTrue(tag.getAttributeContains("class", "btn"));
+        assertTrue(tag.getAttributeContains("class", "btn-default"));
     }
 
     @Test
@@ -83,6 +84,8 @@ public class ButtonBehaviorTest extends AbstractWicketPageTest {
     }
 
     public class TestPage extends WebPage {
+        private static final long serialVersionUID = 1L;
+
         public TestPage() {
             button = new WebMarkupContainer("button");
             add(button);

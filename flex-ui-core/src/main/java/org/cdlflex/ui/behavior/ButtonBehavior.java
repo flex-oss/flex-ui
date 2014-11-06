@@ -27,6 +27,8 @@ import org.cdlflex.ui.util.Strings;
  */
 public class ButtonBehavior extends CssClassNameAppender {
 
+    private static final long serialVersionUID = 1L;
+
     public static final Type DEFAULT_TYPE = Type.DEFAULT;
     public static final Size DEFAULT_SIZE = Size.MEDIUM;
 
@@ -101,6 +103,8 @@ public class ButtonBehavior extends CssClassNameAppender {
      * Concatenates Type and Size css class names and any others required for rendering bootstrap buttons.
      */
     public static class ButtonCssClassNameModel extends AbstractReadOnlyModel<String> {
+
+        private static final long serialVersionUID = 1L;
 
         private IModel<Type> buttonType;
         private IModel<Size> buttonSize;
