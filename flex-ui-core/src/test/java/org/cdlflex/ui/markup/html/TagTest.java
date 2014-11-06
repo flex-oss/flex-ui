@@ -16,6 +16,7 @@ package org.cdlflex.ui.markup.html;
 import static org.junit.Assert.assertEquals;
 
 import java.util.LinkedHashMap;
+import java.util.Map;
 
 import org.junit.Test;
 
@@ -69,6 +70,20 @@ public class TagTest {
         a.add(new Tag("i").attr("class", "icon").setShortTag(true));
 
         assertEquals("<a><span>some text node</span><i class=\"icon\"/></a>", a.toString());
+    }
+
+    @Test
+    public void addAttributeMap_generatesCorrectHtml() throws Exception {
+        Tag tag = new Tag("span");
+
+        tag.attr("bar", "baz");
+        Map<String, Object> map = new LinkedHashMap<>();
+        map.put("foo", "bar");
+        map.put("answer", "42");
+
+        tag.attrs(map);
+
+        assertEquals("<span answer=\"42\" foo=\"bar\" bar=\"baz\"></span>", tag.toString());
     }
 
 }

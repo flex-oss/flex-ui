@@ -16,10 +16,9 @@ package org.cdlflex.ui.markup.html;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-
-import org.cdlflex.ui.util.Strings;
 
 /**
  * Helper class to build markup tag strings.
@@ -38,7 +37,7 @@ public class Tag implements Serializable {
         this(name, new HashMap<String, Object>(), (Tag) null);
     }
 
-    public Tag(CharSequence name, String body) {
+    public Tag(CharSequence name, CharSequence body) {
         this(name, new HashMap<String, Object>(), body);
     }
 
@@ -46,7 +45,7 @@ public class Tag implements Serializable {
         this(name, new HashMap<String, Object>(), body);
     }
 
-    public Tag(CharSequence name, Map<String, Object> attributes, String body) {
+    public Tag(CharSequence name, Map<String, Object> attributes, CharSequence body) {
         this(name, attributes, new TextNode(body));
     }
 
@@ -82,8 +81,24 @@ public class Tag implements Serializable {
     }
 
     /**
+     * Adds all entries of the given map as attributes to this tag.
+     *
+     * @param attributeMap a map containing key/value pairs.
+     * @return this for chaining
+     */
+    public Tag attrs(Map<? extends String, ?> attributeMap) {
+        if (attributeMap != null) {
+            for (Map.Entry<? extends String, ?> entry : attributeMap.entrySet()) {
+                attr(entry.getKey(), entry.getValue());
+            }
+        }
+
+        return this;
+    }
+
+    /**
      * Adds the given char sequence as a text node as child.
-     * 
+     *
      * @param text the child as string
      * @return this for chaining
      */
@@ -159,6 +174,11 @@ public class Tag implements Serializable {
         return str.toString();
     }
 
+    @Override
+    public String toString() {
+        return toMarkup();
+    }
+
     private void appendAttributes(StringBuilder str) {
         for (Map.Entry<String, Object> entry : attributes.entrySet()) {
             str.append(" ");
@@ -182,17 +202,31 @@ public class Tag implements Serializable {
         }
     }
 
+    private void join(Iterator<?> iterator, String separator, StringBuilder str) {
+        while (iterator.hasNext()) {
+            str.append(String.valueOf(iterator.next()));
+
+            if (iterator.hasNext()) {
+                str.append(separator);
+            }
+        }
+    }
+
     private void join(Iterable<?> collection, String separator, StringBuilder str) {
-        Strings.joinInto(str, separator, collection);
+        join(collection.iterator(), separator, str);
     }
 
     private void join(Object[] array, String separator, StringBuilder str) {
-        Strings.joinInto(str, separator, array);
-    }
+        if (array.length == 0) {
+            return;
+        }
 
-    @Override
-    public String toString() {
-        return toMarkup();
+        int i = 0;
+        for (; i < (array.length - 1); i++) {
+            str.append(String.valueOf(array[i]));
+            str.append(separator);
+        }
+        str.append(String.valueOf(array[i]));
     }
 
     /**
