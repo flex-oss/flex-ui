@@ -44,7 +44,9 @@ public class IconsPage extends ExamplePage {
         });
     }
 
+    // CHECKSTYLE:OFF
     private List<IconType> getIconTypes() {
+        // CHECKSTYLE:ON
         List<IconType> list = new ArrayList<>();
 
         list.add(GlyphIconType.ADJUST);

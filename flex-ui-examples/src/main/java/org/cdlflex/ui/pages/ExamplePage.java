@@ -25,6 +25,7 @@ import org.apache.wicket.model.Model;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
 import org.apache.wicket.util.io.IClusterable;
 import org.cdlflex.ui.behavior.CssClassNameAppender;
+import org.cdlflex.ui.pages.examples.ButtonsPage;
 import org.cdlflex.ui.pages.examples.ExamplesHomePage;
 import org.cdlflex.ui.pages.examples.FormComponentsPage;
 import org.cdlflex.ui.pages.examples.IconsPage;
@@ -44,6 +45,7 @@ public class ExamplePage extends BasePage {
             add(new LinkItem(ExamplesHomePage.class, Model.of("Overview")));
             add(new LinkItem(FormComponentsPage.class, Model.of("Form components")));
             add(new LinkItem(IconsPage.class, Model.of("Bootstrap Glyphicons")));
+            add(new LinkItem(ButtonsPage.class, Model.of("Buttons")));
             add(new LinkItem(TablePage.class, Model.of("Tables")));
         }
     };
@@ -81,7 +83,19 @@ public class ExamplePage extends BasePage {
 
     }
 
-    private static final class LinkItem implements IClusterable {
+    /**
+     * Returns all registered links that are displayed in the left navigation bar.
+     * 
+     * @return links
+     */
+    public List<LinkItem> getLinks() {
+        return links;
+    }
+
+    /**
+     * Encapsulates necessary information to create a BookmarkablePageLink.
+     */
+    public static final class LinkItem implements IClusterable {
         private static final long serialVersionUID = 1L;
 
         private Class<? extends Page> pageClass;
@@ -92,6 +106,12 @@ public class ExamplePage extends BasePage {
             this.body = body;
         }
 
+        /**
+         * Creates a new BookmarkablePageLink from this LinkItem.
+         * 
+         * @param id the markup id
+         * @return a new BookmarkablePageLink
+         */
         public BookmarkablePageLink<Page> newLink(String id) {
             BookmarkablePageLink<Page> link = new BookmarkablePageLink<>(id, getPageClass());
 
