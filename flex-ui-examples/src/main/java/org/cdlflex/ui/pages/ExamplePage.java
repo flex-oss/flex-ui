@@ -28,6 +28,7 @@ import org.cdlflex.ui.behavior.CssClassNameAppender;
 import org.cdlflex.ui.pages.examples.ExamplesHomePage;
 import org.cdlflex.ui.pages.examples.FormComponentsPage;
 import org.cdlflex.ui.pages.examples.IconsPage;
+import org.cdlflex.ui.pages.examples.TablePage;
 
 /**
  * Base page for an example page.
@@ -43,6 +44,7 @@ public class ExamplePage extends BasePage {
             add(new LinkItem(ExamplesHomePage.class, Model.of("Overview")));
             add(new LinkItem(FormComponentsPage.class, Model.of("Form components")));
             add(new LinkItem(IconsPage.class, Model.of("Bootstrap Glyphicons")));
+            add(new LinkItem(TablePage.class, Model.of("Tables")));
         }
     };
 
