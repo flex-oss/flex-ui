@@ -31,14 +31,7 @@ public class ButtonList extends ListView<AbstractLink> {
 
     private static final long serialVersionUID = 1L;
 
-    /**
-     * Returns the markup id used for button list elements.
-     * 
-     * @return the markup id that is used for buttons in the list
-     */
-    public static String getButtonMarkupId() {
-        return "button";
-    }
+    public static final String BUTTON_MARKUP_ID = "button";
 
     /**
      * Construct.
@@ -97,4 +90,14 @@ public class ButtonList extends ListView<AbstractLink> {
 
         item.add(link);
     }
+
+    /**
+     * Returns the markup id used for button list elements.
+     *
+     * @return the markup id that is used for buttons in the list
+     */
+    public static String getButtonMarkupId() {
+        return BUTTON_MARKUP_ID;
+    }
+
 }
