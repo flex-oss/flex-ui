@@ -18,6 +18,8 @@ package org.cdlflex.ui.resource;
  */
 public class MomentJsResourceReference extends ManagedJsResourceReference {
 
+    private static final long serialVersionUID = 1L;
+
     public static final String DEFAULT_VERSION = "2.8.3";
 
     private static final MomentJsResourceReference INSTANCE = new MomentJsResourceReference();

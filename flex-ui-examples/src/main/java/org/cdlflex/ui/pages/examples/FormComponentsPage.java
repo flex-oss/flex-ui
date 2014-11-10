@@ -17,6 +17,7 @@ import java.util.Arrays;
 
 import org.apache.wicket.markup.html.form.Form;
 import org.cdlflex.ui.markup.html.form.ButtonMultipleChoice;
+import org.cdlflex.ui.markup.html.form.DateTimePicker;
 import org.cdlflex.ui.pages.ExamplePage;
 
 /**
@@ -24,8 +25,12 @@ import org.cdlflex.ui.pages.ExamplePage;
  */
 public class FormComponentsPage extends ExamplePage {
 
+    private static final long serialVersionUID = 1L;
+
     public FormComponentsPage() {
         Form<Void> form = new Form<>("form");
+
+        form.add(new DateTimePicker("date-time-picker", "y-MM-dd HH:mm"));
 
         form.add(new ButtonMultipleChoice<>("button-multiple-choice", Arrays.asList("Choice A", "Choice B",
                 "Choice C", "Choice D")));

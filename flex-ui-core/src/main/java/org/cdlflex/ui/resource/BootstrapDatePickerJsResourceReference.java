@@ -14,43 +14,43 @@
 package org.cdlflex.ui.resource;
 
 import org.apache.wicket.markup.head.HeaderItem;
-import org.apache.wicket.resource.JQueryResourceReference;
 import org.cdlflex.ui.util.ResourceReferences;
 
 /**
- * Resource reference for the main bootstrap java script.
+ * BootstrapDatePickerJsResourceReference.
  */
-public class BootstrapJsResourceReference extends ManagedJsResourceReference {
+public class BootstrapDatePickerJsResourceReference extends ManagedJsResourceReference {
 
     private static final long serialVersionUID = 1L;
 
-    public static final String DEFAULT_VERSION = "3.2.0";
+    public static final String DEFAULT_VERSION = "3.1.3";
 
-    private static final BootstrapJsResourceReference INSTANCE = new BootstrapJsResourceReference();
+    private static final BootstrapDatePickerJsResourceReference INSTANCE =
+        new BootstrapDatePickerJsResourceReference();
 
-    public BootstrapJsResourceReference() {
+    public BootstrapDatePickerJsResourceReference() {
         this(DEFAULT_VERSION);
     }
 
-    public BootstrapJsResourceReference(String version) {
-        super("bootstrap", "js/bootstrap.min.js", version);
+    public BootstrapDatePickerJsResourceReference(String version) {
+        super("bootstrap-datetimepicker", "js/bootstrap-datetimepicker.min.js", version);
     }
 
-    public BootstrapJsResourceReference(Class<?> scope, String name) {
+    public BootstrapDatePickerJsResourceReference(Class<?> scope, String name) {
         super(scope, name);
     }
 
     /**
-     * Returns a singleton instance of this resource reference using the default version.
-     *
-     * @return a resource reference instance
+     * Returns a singleton instance of this resource.
+     * 
+     * @return singleton instance of this resource
      */
-    public static BootstrapJsResourceReference get() {
+    public static BootstrapDatePickerJsResourceReference get() {
         return INSTANCE;
     }
 
     @Override
     public Iterable<? extends HeaderItem> getDependencies() {
-        return ResourceReferences.join(super.getDependencies(), JQueryResourceReference.get());
+        return ResourceReferences.join(super.getDependencies(), MomentJsResourceReference.get());
     }
 }

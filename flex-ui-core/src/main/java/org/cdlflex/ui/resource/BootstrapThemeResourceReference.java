@@ -18,6 +18,8 @@ package org.cdlflex.ui.resource;
  */
 public class BootstrapThemeResourceReference extends ManagedCssResourceReference {
 
+    private static final long serialVersionUID = 1L;
+
     public static final String DEFAULT_VERSION = "3.2.0";
 
     private static final BootstrapThemeResourceReference INSTANCE = new BootstrapThemeResourceReference();

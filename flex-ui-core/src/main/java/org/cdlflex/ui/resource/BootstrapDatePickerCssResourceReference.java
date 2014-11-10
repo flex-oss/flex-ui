@@ -14,34 +14,35 @@
 package org.cdlflex.ui.resource;
 
 /**
- * Resource reference for the main bootstrap css.
+ * BootstrapDatePickerCssResourceReference.
  */
-public class BootstrapCssResourceReference extends ManagedCssResourceReference {
+public class BootstrapDatePickerCssResourceReference extends ManagedCssResourceReference {
 
     private static final long serialVersionUID = 1L;
 
-    public static final String DEFAULT_VERSION = "3.2.0";
+    public static final String DEFAULT_VERSION = "3.1.3";
 
-    private static final BootstrapCssResourceReference INSTANCE = new BootstrapCssResourceReference();
+    private static final BootstrapDatePickerCssResourceReference INSTANCE =
+        new BootstrapDatePickerCssResourceReference();
 
-    public BootstrapCssResourceReference() {
+    public BootstrapDatePickerCssResourceReference() {
         this(DEFAULT_VERSION);
     }
 
-    public BootstrapCssResourceReference(String version) {
-        super("bootstrap", "css/bootstrap.min.css", version);
+    public BootstrapDatePickerCssResourceReference(String version) {
+        super("bootstrap-datetimepicker", "css/bootstrap-datetimepicker.min.css", version);
     }
 
-    public BootstrapCssResourceReference(Class<?> scope, String name) {
+    public BootstrapDatePickerCssResourceReference(Class<?> scope, String name) {
         super(scope, name);
     }
 
     /**
-     * Returns a singleton instance of this resource reference using the default version.
-     *
-     * @return a resource reference instance
+     * Returns a singleton instance of this resource.
+     * 
+     * @return singleton instance of this resource
      */
-    public static BootstrapCssResourceReference get() {
+    public static BootstrapDatePickerCssResourceReference get() {
         return INSTANCE;
     }
 }

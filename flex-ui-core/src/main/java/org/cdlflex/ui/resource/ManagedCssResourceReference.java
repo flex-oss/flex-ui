@@ -39,6 +39,8 @@ import org.apache.wicket.request.resource.CssResourceReference;
  */
 public class ManagedCssResourceReference extends CssResourceReference {
 
+    private static final long serialVersionUID = 1L;
+
     public ManagedCssResourceReference(String name) {
         this(ManagedCssResourceReference.class, name);
     }
