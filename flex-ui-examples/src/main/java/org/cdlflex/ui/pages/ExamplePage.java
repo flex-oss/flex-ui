@@ -27,6 +27,7 @@ import org.apache.wicket.util.io.IClusterable;
 import org.cdlflex.ui.behavior.CssClassNameAppender;
 import org.cdlflex.ui.pages.examples.ButtonsPage;
 import org.cdlflex.ui.pages.examples.ExamplesHomePage;
+import org.cdlflex.ui.pages.examples.FlexTablePage;
 import org.cdlflex.ui.pages.examples.FormComponentsPage;
 import org.cdlflex.ui.pages.examples.IconsPage;
 import org.cdlflex.ui.pages.examples.TablePage;
@@ -47,6 +48,7 @@ public class ExamplePage extends BasePage {
             add(new LinkItem(IconsPage.class, Model.of("Bootstrap Glyphicons")));
             add(new LinkItem(ButtonsPage.class, Model.of("Buttons")));
             add(new LinkItem(TablePage.class, Model.of("Tables")));
+            add(new LinkItem(FlexTablePage.class, Model.of("Flex Tables")));
         }
     };
 
