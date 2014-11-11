@@ -30,7 +30,7 @@ import org.rauschig.wicketjs.ajax.JsAjaxCallListener;
 /**
  * An AjaxSubmitLink that uses bootstrap's <code>button</code> JavaScript to load a default loading text.
  *
- * @see org.cdlflex.ui.ajax.IndicatingButton
+ * @see org.cdlflex.ui.ajax.markup.html.link.IndicatingButton
  */
 public abstract class IndicatingSubmitButton extends AjaxSubmitLink implements IAjaxCallAware {
     private static final long serialVersionUID = 1L;

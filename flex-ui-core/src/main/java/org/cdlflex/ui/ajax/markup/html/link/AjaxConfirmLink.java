@@ -11,7 +11,7 @@
  *    See the License for the specific language governing permissions and
  *    limitations under the License.
  */
-package org.cdlflex.ui.ajax;
+package org.cdlflex.ui.ajax.markup.html.link;
 
 import org.apache.wicket.model.IModel;
 import org.rauschig.wicketjs.IJavaScript;
