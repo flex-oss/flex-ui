@@ -13,6 +13,8 @@
  */
 package org.cdlflex.ui.pages.examples;
 
+import static org.cdlflex.ui.util.Collections.map;
+
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -25,6 +27,9 @@ import org.apache.wicket.markup.html.link.AbstractLink;
 import org.apache.wicket.markup.repeater.Item;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
+import org.cdlflex.ui.ajax.behavior.data.repeater.table.MultiSelectionAwareBehavior;
+import org.cdlflex.ui.ajax.behavior.data.repeater.table.SelectionAwareBehavior;
+import org.cdlflex.ui.ajax.behavior.data.repeater.table.ToggleAwareBehavior;
 import org.cdlflex.ui.markup.css.Buttons;
 import org.cdlflex.ui.markup.css.icon.GlyphIconType;
 import org.cdlflex.ui.markup.html.button.DropDownButton;
@@ -34,13 +39,16 @@ import org.cdlflex.ui.markup.html.repeater.data.table.DefaultDataTable;
 import org.cdlflex.ui.markup.html.repeater.data.table.IRowCallback;
 import org.cdlflex.ui.markup.html.repeater.data.table.PropertyConvertingColumn;
 import org.cdlflex.ui.markup.html.repeater.data.table.SortableListDataProvider;
+import org.cdlflex.ui.markup.html.repeater.data.table.TableBuilder;
 import org.cdlflex.ui.model.Person;
 import org.cdlflex.ui.pages.ExamplePage;
+import org.cdlflex.ui.util.Collections;
 import org.cdlflex.ui.util.convert.ToStringConverter;
 import org.rauschig.wicketjs.IJavaScript;
 import org.rauschig.wicketjs.JsCall;
 import org.rauschig.wicketjs.ajax.JsAjaxLink;
 import org.rauschig.wicketjs.markup.html.JsLink;
+import org.rauschig.wicketjs.util.WicketJsUtils;
 
 public class TablePage extends ExamplePage {
     private static final long serialVersionUID = 1L;
@@ -48,6 +56,9 @@ public class TablePage extends ExamplePage {
     public TablePage() {
         add(newDefaultDataTable("default-data-table"));
         add(newDefaultDataTableActions("default-data-table-actions"));
+        add(newSelectionAwareDataTable("selection-aware-data-table"));
+        add(newToggleAwareDataTable("toggle-aware-data-table"));
+        add(newMultiSelectionAwareDataTable("multi-selection-aware-data-table"));
     }
 
     private Component newDefaultDataTable(String id) {
@@ -130,4 +141,62 @@ public class TablePage extends ExamplePage {
 
         return table;
     }
+
+    private Component newSelectionAwareDataTable(String id) {
+        return new TableBuilder<Person, String>().data(Person.createExampleData())
+                .add(new PropertyColumn<Person, String>(Model.of("ID"), "id", "id"))
+                .add(new PropertyColumn<Person, String>(Model.of("Name"), "name", "name"))
+                .add(new PropertyColumn<Person, String>(Model.of("Birthday"), "birthday", "birthday"))
+                .add(new SelectionAwareBehavior<Person>() {
+                    private static final long serialVersionUID = 1L;
+
+                    @Override
+                    protected void onSelect(Item<Person> item, AjaxRequestTarget target) {
+                        WicketJsUtils.append(target, new JsCall("console.log", "selected " + item.getModelObject()));
+                    }
+                }).create(id);
+    }
+
+    private Component newToggleAwareDataTable(String id) {
+        return new TableBuilder<Person, String>().data(Person.createExampleData())
+                .add(new PropertyColumn<Person, String>(Model.of("ID"), "id", "id"))
+                .add(new PropertyColumn<Person, String>(Model.of("Name"), "name", "name"))
+                .add(new PropertyColumn<Person, String>(Model.of("Birthday"), "birthday", "birthday"))
+                .add(new ToggleAwareBehavior<Person>() {
+                    private static final long serialVersionUID = 1L;
+
+                    @Override
+                    protected void onSelect(Item<Person> item, AjaxRequestTarget target) {
+                        WicketJsUtils.append(target, new JsCall("console.log", "selected " + item.getModelObject()));
+                    }
+
+                    @Override
+                    protected void onDeselect(Item<Person> item, AjaxRequestTarget target) {
+                        WicketJsUtils.append(target, new JsCall("console.log", "deselected " + item.getModelObject()));
+                    }
+                }).create(id);
+    }
+
+    private Component newMultiSelectionAwareDataTable(String id) {
+        return new TableBuilder<Person, String>().data(Person.createExampleData())
+                .add(new PropertyColumn<Person, String>(Model.of("ID"), "id", "id"))
+                .add(new PropertyColumn<Person, String>(Model.of("Name"), "name", "name"))
+                .add(new PropertyColumn<Person, String>(Model.of("Birthday"), "birthday", "birthday"))
+                .add(new MultiSelectionAwareBehavior<Person>() {
+                    private static final long serialVersionUID = 1L;
+
+                    @Override
+                    protected void onSelectionChanged(List<Item<Person>> selection, AjaxRequestTarget target) {
+                        List<Person> persons = map(selection, new Collections.Callback<Item<Person>, Person>() {
+                            @Override
+                            public Person call(Item<Person> object) {
+                                return object.getModelObject();
+                            }
+                        });
+
+                        WicketJsUtils.append(target, new JsCall("console.log", String.valueOf(persons)));
+                    }
+                }).create(id);
+    }
+
 }
