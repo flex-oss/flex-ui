@@ -15,9 +15,6 @@ package org.cdlflex.ui.markup.html.dialog.form;
 
 import static org.rauschig.wicketjs.jquery.JQuery.$;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.html.link.AbstractLink;
 import org.apache.wicket.model.IModel;
@@ -46,7 +43,7 @@ public abstract class FormDialog<T> extends Dialog<T> {
     private Form<T> form;
 
     public FormDialog(String markupId) {
-        super(markupId, null, null);
+        this(markupId, null, null);
     }
 
     public FormDialog(String id, IModel<T> model) {
@@ -55,42 +52,21 @@ public abstract class FormDialog<T> extends Dialog<T> {
 
     public FormDialog(String id, IModel<?> header, IModel<T> model) {
         super(id, header, model);
+    }
 
-        form = newForm(model);
-        add(getForm());
+    @Override
+    protected void onInitialize() {
+        super.onInitialize();
+
+        form = newForm(getModel());
+        add(form);
+
+        addCloseButton(getCloseButtonModel());
+        addButton(newSubmitButton(BUTTON_MARKUP_ID, getModel(), getForm()));
     }
 
     public Form<T> getForm() {
         return form;
-    }
-
-    @Override
-    protected List<AbstractLink> createActions(String id) {
-        List<AbstractLink> actions = new ArrayList<>();
-
-        onBeforeCreateActions(id);
-        actions.add(newSubmitButton(id, getModel(), getForm()));
-        onAfterCreateActions(id);
-
-        return actions;
-    }
-
-    /**
-     * Called in {@link #createActions(String)} before the submit button is created. Adds the close button by default.
-     * 
-     * @param id the component id
-     */
-    protected void onBeforeCreateActions(String id) {
-        addCloseButton(getCloseButtonModel());
-    }
-
-    /**
-     * Called in {@link #createActions(String)} after the submit button is created.
-     * 
-     * @param id the component id
-     */
-    protected void onAfterCreateActions(String id) {
-        // hook
     }
 
     /**

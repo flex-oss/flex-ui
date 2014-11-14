@@ -18,6 +18,7 @@ import java.util.List;
 
 import org.apache.wicket.Component;
 import org.apache.wicket.markup.ComponentTag;
+import org.apache.wicket.markup.html.TransparentWebMarkupContainer;
 import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.link.AbstractLink;
@@ -198,7 +199,7 @@ public abstract class Dialog<T> extends GenericPanel<T> {
      * @return a new component
      */
     protected WebMarkupContainer newContainer(String id) {
-        WebMarkupContainer modal = new WebMarkupContainer(id);
+        WebMarkupContainer modal = new TransparentWebMarkupContainer(id);
         modal.add(new CssClassNameAppender(new CssClassNameProvidingModel<>(size)));
         return modal;
     }
@@ -220,7 +221,7 @@ public abstract class Dialog<T> extends GenericPanel<T> {
      * @return a new component
      */
     protected WebMarkupContainer newBody(String id) {
-        return new WebMarkupContainer(id);
+        return new TransparentWebMarkupContainer(id);
     }
 
     /**
@@ -235,6 +236,33 @@ public abstract class Dialog<T> extends GenericPanel<T> {
 
         footer.add(new ButtonList("buttons", buttons));
 
+        return footer;
+    }
+
+    /**
+     * Returns the dialog container component.
+     *
+     * @return a component
+     */
+    protected WebMarkupContainer getContainer() {
+        return container;
+    }
+
+    /**
+     * Returns the body component.
+     *
+     * @return a component
+     */
+    protected WebMarkupContainer getBody() {
+        return body;
+    }
+
+    /**
+     * Returns the footer component.
+     *
+     * @return a component
+     */
+    protected WebMarkupContainer getFooter() {
         return footer;
     }
 
