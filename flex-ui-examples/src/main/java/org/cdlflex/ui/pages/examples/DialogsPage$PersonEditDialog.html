@@ -17,19 +17,16 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:wicket="http://wicket.apache.org">
 <body>
 <wicket:extend>
-  <h1 class="page-header">Modal dialogs</h1>
-
-  <div class="row">
-    <div class="col-md-12">
-
-      <button class="btn btn-default" wicket:id="open-person-detail-dialog">Details</button>
-      <button class="btn btn-primary" wicket:id="open-person-edit-dialog">Edit</button>
-
-      <div wicket:id="person-detail-dialog" id="person-detail-dialog"></div>
-      <div wicket:id="person-edit-dialog" id="person-edit-dialog"></div>
-
+  <form wicket:id="form" role="form">
+    <div class="form-group">
+      <label for="name">Name</label>
+      <input wicket:id="name" type="text" class="form-control" id="name" placeholder="Name">
     </div>
-  </div>
+    <div class="form-group">
+      <label for="birthday">Birthday</label>
+      <input wicket:id="birthday" type="text" class="form-control" id="birthday" placeholder="Birthday">
+    </div>
+  </form>
 </wicket:extend>
 </body>
 </html>
