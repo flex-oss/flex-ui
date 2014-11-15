@@ -21,7 +21,7 @@
   <parent>
     <artifactId>flex-ui-parent</artifactId>
     <groupId>org.cdlflex</groupId>
-    <version>0.2.0</version>
+    <version>0.3.0-SNAPSHOT</version>
     <relativePath>..</relativePath>
   </parent>
 
