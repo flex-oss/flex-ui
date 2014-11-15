@@ -173,7 +173,7 @@ public class ButtonRadioChoice<T> extends RadioChoice<T> {
         Tag inputTag =
             new Tag("input").attr("name", getInputName()).attr("type", "radio")
                     .attr("checked", "checked", isSelected).attr("disabled", "disabled", !enabled).attr("value", id)
-                    .attr("id", idAttr);
+                    .attr("id", idAttr).attr("style", "display:none");
 
         // Should a roundtrip be made (have onSelectionChanged called) when the option is clicked?
         if (wantOnSelectionChangedNotifications()) {
