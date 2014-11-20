@@ -22,7 +22,7 @@
     <bundle.namespace>${project.groupId}.ui.fruit</bundle.namespace>
     <bundle.symbolicName>${project.groupId}.ui.fruit</bundle.symbolicName>
 
-    <fruit.version>0.2.0</fruit.version>
+    <fruit.version>0.4.0</fruit.version>
   </properties>
 
   <build>
