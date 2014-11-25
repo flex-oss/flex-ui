@@ -21,39 +21,90 @@ import static org.apache.wicket.feedback.FeedbackMessage.SUCCESS;
 import static org.apache.wicket.feedback.FeedbackMessage.UNDEFINED;
 import static org.apache.wicket.feedback.FeedbackMessage.WARNING;
 
+import org.apache.wicket.Component;
 import org.apache.wicket.feedback.FeedbackMessage;
 import org.apache.wicket.feedback.IFeedbackMessageFilter;
+import org.cdlflex.ui.markup.css.Alerts.Level;
+import org.cdlflex.ui.markup.html.alert.Alert;
 
 /**
- * Flex UI FeedbackPanel that displays messages as a list of bootstrap alerts with the respective alert level.
+ * Engineering Cockpit FeedbackPanel that displays messages as a list of bootstrap alerts with the respective alert
+ * level.
  */
 public class FeedbackPanel extends org.apache.wicket.markup.html.panel.FeedbackPanel {
     private static final long serialVersionUID = 1L;
 
+    private boolean dismissible;
+
     public FeedbackPanel(String id) {
-        super(id);
+        this(id, true);
+    }
+
+    public FeedbackPanel(String id, boolean dismissible) {
+        this(id, null, dismissible);
     }
 
     public FeedbackPanel(String id, IFeedbackMessageFilter filter) {
+        this(id, filter, true);
+    }
+
+    public FeedbackPanel(String id, IFeedbackMessageFilter filter, boolean dismissible) {
         super(id, filter);
+        this.dismissible = dismissible;
+    }
+
+    public boolean isDismissible() {
+        return dismissible;
+    }
+
+    /**
+     * Sets whether the alert panels are dismissible (can be closed by the user).
+     *
+     * @param isDismissible the flag
+     * @return this for chaining
+     */
+
+    public FeedbackPanel setDismissible(boolean isDismissible) {
+        this.dismissible = isDismissible;
+        return this;
     }
 
     @Override
-    protected String getCSSClass(FeedbackMessage message) {
-        switch (message.getLevel()) {
+    protected Component newMessageDisplayComponent(String id, FeedbackMessage message) {
+        Alert alert = new Alert("message", getAlertLevel(message.getLevel())) {
+            private static final long serialVersionUID = 1L;
+
+            @Override
+            public boolean isDismissible() {
+                return FeedbackPanel.this.isDismissible();
+            }
+        };
+        alert.add(super.newMessageDisplayComponent("label", message));
+        return alert;
+    }
+
+    /**
+     * Maps the FeedbackMessage alert level to Level enum value.
+     * 
+     * @param level the FeedbackMessage level
+     * @return the Alerts.Level enum value
+     */
+    protected Level getAlertLevel(int level) {
+        switch (level) {
             case INFO:
-                return "alert-info";
+                return Level.INFO;
             case SUCCESS:
-                return "alert-success";
+                return Level.SUCCESS;
             case WARNING:
-                return "alert-warning";
+                return Level.WARNING;
             case ERROR:
             case FATAL:
-                return "alert-danger";
+                return Level.DANGER;
             case DEBUG:
             case UNDEFINED:
             default:
-                return "alert-primary";
+                return Level.UNKNOWN;
         }
     }
+
 }

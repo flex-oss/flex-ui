@@ -18,9 +18,11 @@
 <body>
 <wicket:panel>
   <div wicket:id="feedbackul" class="flexFeedbackPanel">
-    <div wicket:id="messages" class="alert">
-      <span wicket:id="message">Feedback message</span>
-    </div>
+    <wicket:container wicket:id="messages">
+      <div wicket:id="message">
+        <span wicket:id="label">A Message</span>
+      </div>
+    </wicket:container>
   </div>
 </wicket:panel>
 </body>
