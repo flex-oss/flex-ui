@@ -25,7 +25,7 @@ import org.cdlflex.ui.markup.css.ICssClassNameProvider;
  * @param <T> The concrete ICssClassNameProvider type
  */
 public class CssClassNameProvidingModel<T extends ICssClassNameProvider & Serializable> implements
-        IGenericWrapModel<String, T>, ICssClassNameProvider {
+        IGenericWrapModel<String, T> {
     private static final long serialVersionUID = 1L;
 
     private IModel<T> wrapped;
@@ -45,7 +45,7 @@ public class CssClassNameProvidingModel<T extends ICssClassNameProvider & Serial
 
     @Override
     public String getObject() {
-        return getCssClassName();
+        return getWrappedModel().getObject().getCssClassName();
     }
 
     @Override
@@ -57,8 +57,4 @@ public class CssClassNameProvidingModel<T extends ICssClassNameProvider & Serial
         wrapped.detach();
     }
 
-    @Override
-    public String getCssClassName() {
-        return getWrappedModel().getObject().getCssClassName();
-    }
 }

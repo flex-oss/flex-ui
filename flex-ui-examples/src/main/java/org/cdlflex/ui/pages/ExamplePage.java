@@ -25,6 +25,7 @@ import org.apache.wicket.model.Model;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
 import org.apache.wicket.util.io.IClusterable;
 import org.cdlflex.ui.behavior.CssClassNameAppender;
+import org.cdlflex.ui.pages.examples.AlertsPage;
 import org.cdlflex.ui.pages.examples.ButtonsPage;
 import org.cdlflex.ui.pages.examples.DialogsPage;
 import org.cdlflex.ui.pages.examples.ExamplesHomePage;
@@ -45,6 +46,7 @@ public class ExamplePage extends BasePage {
 
         {
             add(new LinkItem(ExamplesHomePage.class, Model.of("Overview")));
+            add(new LinkItem(AlertsPage.class, Model.of("Alerts")));
             add(new LinkItem(FormComponentsPage.class, Model.of("Form components")));
             add(new LinkItem(IconsPage.class, Model.of("Bootstrap Glyphicons")));
             add(new LinkItem(ButtonsPage.class, Model.of("Buttons")));

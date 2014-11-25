@@ -13,8 +13,11 @@
  */
 package org.cdlflex.ui.util;
 
+import java.util.Arrays;
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.Iterator;
+import java.util.Set;
 
 /**
  * String utility class.
@@ -38,6 +41,29 @@ public final class Strings {
      */
     public static boolean isEmpty(CharSequence sequence) {
         return sequence == null || sequence.length() == 0;
+    }
+
+    /**
+     * Takes a string of separated values, interprets them as a collection, retains unique values and joins them using
+     * the separator again.
+     * <p/>
+     * Example: A string "a b a", using a whitespace as separator, would yield "a b".
+     *
+     * @param separator the separator
+     * @param values the values to normalize together
+     * @return a normalized string
+     */
+    public static String unique(String separator, String... values) {
+        Set<String> set = new HashSet<>(values.length);
+
+        for (String value : values) {
+            if (Strings.isEmpty(value)) {
+                continue;
+            }
+            set.addAll(Arrays.asList(value.trim().split(separator)));
+        }
+
+        return join(separator, set);
     }
 
     /**

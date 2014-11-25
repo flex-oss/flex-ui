@@ -14,15 +14,13 @@
 package org.cdlflex.ui.behavior;
 
 import java.io.Serializable;
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Set;
 
 import org.apache.wicket.behavior.AttributeAppender;
 import org.apache.wicket.markup.ComponentTag;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
 import org.cdlflex.ui.markup.css.ICssClassNameProvider;
+import org.cdlflex.ui.model.CssClassNameProvidingModel;
 import org.cdlflex.ui.util.Strings;
 
 /**
@@ -61,16 +59,20 @@ public class CssClassNameAppender extends AttributeAppender {
      */
     public static final String ATTRIBUTE_NAME = "class";
 
-    public CssClassNameAppender(IModel<?> replaceModel) {
-        this(ATTRIBUTE_NAME, replaceModel, " ");
+    public CssClassNameAppender(String value) {
+        this(ATTRIBUTE_NAME, Model.of(value), " ");
     }
 
     public CssClassNameAppender(String... values) {
         this(Strings.join(" ", values));
     }
 
-    public CssClassNameAppender(Serializable value) {
-        this(ATTRIBUTE_NAME, Model.of(value), " ");
+    public CssClassNameAppender(IModel<?> replaceModel) {
+        this(ATTRIBUTE_NAME, replaceModel, " ");
+    }
+
+    public <T extends ICssClassNameProvider & Serializable> CssClassNameAppender(T cssClassNameProvider) {
+        this(new CssClassNameProvidingModel<>(cssClassNameProvider));
     }
 
     protected CssClassNameAppender(String attribute, IModel<?> appendModel, String separator) {
@@ -79,31 +81,7 @@ public class CssClassNameAppender extends AttributeAppender {
 
     @Override
     protected String newValue(String currentValue, String appendValue) {
-        return normalize(getSeparator(), currentValue, appendValue);
-    }
-
-    /**
-     * Takes a string of separated values, interprets them as a collection, retains unique values and joins them using
-     * the separator again.
-     * <p/>
-     * Example: A string "a b a", using a whitespace as separator, would yield "a b".
-     *
-     * @param separator the separator
-     * @param values the values to normalize together
-     * @return a normalized string
-     */
-    protected static String normalize(String separator, String... values) {
-        Set<String> set = new HashSet<>(values.length);
-
-        for (String value : values) {
-            if (Strings.isEmpty(value)) {
-                continue;
-            }
-            String[] split = value.trim().split(separator);
-            set.addAll(Arrays.asList(split));
-        }
-
-        return Strings.join(separator, set);
+        return Strings.unique(getSeparator(), currentValue, appendValue);
     }
 
     /**
@@ -117,7 +95,7 @@ public class CssClassNameAppender extends AttributeAppender {
         String currentValue = tag.getAttribute("class");
         String appendValue = Strings.join(" ", cssClasses);
 
-        tag.put("class", normalize(" ", currentValue, appendValue));
+        tag.put("class", Strings.unique(" ", currentValue, appendValue));
     }
 
     /**
