@@ -50,7 +50,7 @@ public class ExamplePage extends BasePage {
             add(new LinkItem(AlertsPage.class, Model.of("Alerts")));
             add(new LinkItem(FeedbackPanelPage.class, Model.of("Feedback panels")));
             add(new LinkItem(FormComponentsPage.class, Model.of("Form components")));
-            add(new LinkItem(IconsPage.class, Model.of("Bootstrap Glyphicons")));
+            add(new LinkItem(IconsPage.class, Model.of("Bootstrap GlyphIcons")));
             add(new LinkItem(ButtonsPage.class, Model.of("Buttons")));
             add(new LinkItem(DialogsPage.class, Model.of("Dialogs")));
             add(new LinkItem(TablePage.class, Model.of("Tables")));

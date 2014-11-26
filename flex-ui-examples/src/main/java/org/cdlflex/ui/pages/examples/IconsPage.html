@@ -15,12 +15,52 @@
 
 -->
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:wicket="http://wicket.apache.org">
+<head>
+  <wicket:head>
+    <style type="text/css">
+      #icon-grid {
+        padding-left: 0;
+      }
+      #icon-grid > li {
+        display: block;
+        width: 10%;
+        height: 115px;
+        padding: 10px;
+        font-size: 12px;
+        border: 1px solid #fff;
+        background-color: #fafafa;
+        text-align: center;
+        float: left;
+      }
+      #icon-grid > li:hover {
+        color: #fff;
+        background-color: #563d7c;
+      }
+      #icon-grid > li > i {
+        margin-top: 5px;
+        margin-bottom: 15px;
+        font-size: 24px;
+      }
+      #icon-grid > li > span {
+        display: block;
+        word-wrap: break-word;
+      }
+    </style>
+  </wicket:head>
+</head>
 <body>
 <wicket:extend>
   <h1 class="page-header">Icons</h1>
 
-  <ul>
-    <li wicket:id="icons"><i wicket:id="icon"></i> <code wicket:id="class"></code></li>
+  <p>
+    The <code>IconType</code> is a <code>ICssClassNameProvider</code> that can be extended for custom icon types 'in
+    the bootstrap way'. It provides css classes for an <code>Icon</code> which is a <code>WebMarkupContainer</code>
+    extension. In particular, <code>GlyphIconType</code> is an extension of <code>IconType</code> that provides
+    constants for the GlyphIcon set by bootstrap.
+  </p>
+
+  <ul id="icon-grid">
+    <li wicket:id="icons"><i wicket:id="icon"></i> <span wicket:id="class"></span></li>
   </ul>
 </wicket:extend>
 </body>
