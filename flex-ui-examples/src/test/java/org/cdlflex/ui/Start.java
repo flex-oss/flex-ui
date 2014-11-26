@@ -21,14 +21,12 @@ import java.nio.file.Paths;
 import org.apache.wicket.util.time.Duration;
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.server.bio.SocketConnector;
-import org.eclipse.jetty.server.ssl.SslSocketConnector;
-import org.eclipse.jetty.util.resource.Resource;
-import org.eclipse.jetty.util.ssl.SslContextFactory;
 import org.eclipse.jetty.webapp.WebAppContext;
 
 public class Start {
 
     private static final int PORT = 8080;
+    private static final String WAR_PATH = "src/main/webapp";
 
     public static void main(String[] args) throws Exception {
         int timeout = (int) Duration.ONE_HOUR.getMilliseconds();
@@ -45,7 +43,7 @@ public class Start {
         WebAppContext bb = new WebAppContext();
         bb.setServer(server);
         bb.setContextPath("/");
-        bb.setWar(getRootPath().resolve("src/main/webapp").toString());
+        bb.setWar(getRootPath().resolve(WAR_PATH).toString());
 
         server.setHandler(bb);
 
