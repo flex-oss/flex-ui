@@ -18,10 +18,11 @@
 <head>
   <wicket:head>
     <style type="text/css">
-      #icon-grid {
+      .icon-grid {
         padding-left: 0;
+        margin-bottom: 20px;
       }
-      #icon-grid > li {
+      .icon-grid > li {
         display: block;
         width: 10%;
         height: 115px;
@@ -32,16 +33,19 @@
         text-align: center;
         float: left;
       }
-      #icon-grid > li:hover {
+      .icon-grid > li:hover {
         color: #fff;
         background-color: #563d7c;
       }
-      #icon-grid > li > i {
+      .icon-grid.font-awesome > li:hover {
+        background-color: #1EA176;
+      }
+      .icon-grid > li > i {
         margin-top: 5px;
         margin-bottom: 15px;
         font-size: 24px;
       }
-      #icon-grid > li > span {
+      .icon-grid > li > span {
         display: block;
         word-wrap: break-word;
       }
@@ -55,12 +59,24 @@
   <p>
     The <code>IconType</code> is a <code>ICssClassNameProvider</code> that can be extended for custom icon types 'in
     the bootstrap way'. It provides css classes for an <code>Icon</code> which is a <code>WebMarkupContainer</code>
-    extension. In particular, <code>GlyphIconType</code> is an extension of <code>IconType</code> that provides
-    constants for the GlyphIcon set by bootstrap.
+    extension.
   </p>
 
-  <ul id="icon-grid">
-    <li wicket:id="icons"><i wicket:id="icon"></i> <span wicket:id="class"></span></li>
+  <h2>GlyphIcons</h2>
+  <p>
+    <code>GlyphIconType</code> is an extension of <code>IconType</code> that provides constants for the GlyphIcon set
+    that comes with bootstrap.
+  </p>
+  <ul class="icon-grid clearfix">
+    <li wicket:id="glyph-icons"><i wicket:id="icon"></i> <span wicket:id="class"></span></li>
+  </ul>
+
+  <h2>FontAwesomeIcons</h2>
+  <p>
+    You will need to add the <code>FontAwesomeCssResourceReference</code> to your header to use FontAwesome icons.
+  </p>
+  <ul class="icon-grid font-awesome clearfix">
+    <li wicket:id="font-awesome-icons"><i wicket:id="icon"></i> <span wicket:id="class"></span></li>
   </ul>
 </wicket:extend>
 </body>
