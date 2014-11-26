@@ -33,6 +33,7 @@ import org.cdlflex.ui.pages.examples.FeedbackPanelPage;
 import org.cdlflex.ui.pages.examples.FlexTablePage;
 import org.cdlflex.ui.pages.examples.FormComponentsPage;
 import org.cdlflex.ui.pages.examples.IconsPage;
+import org.cdlflex.ui.pages.examples.NavbarPage;
 import org.cdlflex.ui.pages.examples.TablePage;
 
 /**
@@ -52,6 +53,7 @@ public class ExamplePage extends BasePage {
             add(new LinkItem(FormComponentsPage.class, Model.of("Form components")));
             add(new LinkItem(IconsPage.class, Model.of("Bootstrap GlyphIcons")));
             add(new LinkItem(ButtonsPage.class, Model.of("Buttons")));
+            add(new LinkItem(NavbarPage.class, Model.of("Navbars")));
             add(new LinkItem(DialogsPage.class, Model.of("Dialogs")));
             add(new LinkItem(TablePage.class, Model.of("Tables")));
             add(new LinkItem(FlexTablePage.class, Model.of("Flex Tables")));
