@@ -62,4 +62,8 @@ public class AbstractWicketPageTest {
     public TagTester createTag(String html, Component component) {
         return TagTester.createTagByAttribute(html, "id", component.getMarkupId());
     }
+
+    public TagTester createTag(Component component) {
+        return createTag(wicketTester.getLastResponse().getDocument(), component);
+    }
 }

@@ -18,7 +18,10 @@ import java.util.List;
 
 import org.apache.wicket.markup.html.link.AbstractLink;
 import org.apache.wicket.model.Model;
+import org.cdlflex.ui.markup.css.Buttons;
+import org.cdlflex.ui.markup.css.icon.GlyphIconType;
 import org.cdlflex.ui.markup.html.button.DropDownButton;
+import org.cdlflex.ui.markup.html.link.BookmarkablePageButton;
 import org.cdlflex.ui.pages.ExamplePage;
 
 /**
@@ -28,6 +31,16 @@ public class ButtonsPage extends ExamplePage {
     private static final long serialVersionUID = 1L;
 
     public ButtonsPage() {
+        add(new BookmarkablePageButton<Void>("bookmarkable-page-button", ButtonsPage.class));
+        add(new BookmarkablePageButton<Void>("bookmarkable-page-button-replaced", ButtonsPage.class).setBody(Model
+                .of("Replaced")));
+        add(new BookmarkablePageButton<Void>("bookmarkable-page-icon-button", ButtonsPage.class)
+                .setIconType(GlyphIconType.LINK));
+        add(new BookmarkablePageButton<Void>("bookmarkable-page-icon-button-replaced", ButtonsPage.class)
+                .setIconType(GlyphIconType.LINK).setBody(Model.of("Replaced")));
+        add(new BookmarkablePageButton<Void>("bookmarkable-page-icon-button-styled", ButtonsPage.class)
+                .setIconType(GlyphIconType.LINK).setType(Buttons.Type.PRIMARY).setSize(Buttons.Size.MINI));
+
         add(new DropDownButton("dropdown", Model.of("Pages")) {
             private static final long serialVersionUID = 1L;
 

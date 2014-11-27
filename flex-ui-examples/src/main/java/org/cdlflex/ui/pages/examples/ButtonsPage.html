@@ -21,7 +21,22 @@
 
   <div class="row">
     <div class="col-md-12">
-      <div class="dropdown" wicket:id="dropdown"></div>
+      <section>
+        <h2>BookmarkablePageButton</h2>
+        <p>
+          <code>BookmarkablePageButton</code> is a BookmarkablePageLink with a ButtonBehavior and optional IconType
+        </p>
+        <a wicket:id="bookmarkable-page-button">Default</a>
+        <a wicket:id="bookmarkable-page-button-replaced">[]</a>
+        <a wicket:id="bookmarkable-page-icon-button">With icon</a>
+        <a wicket:id="bookmarkable-page-icon-button-replaced">[]</a>
+        <a wicket:id="bookmarkable-page-icon-button-styled">Styled with icon</a>
+      </section>
+
+      <section>
+        <h2>Dropdown buttons</h2>
+        <div class="dropdown" wicket:id="dropdown"></div>
+      </section>
     </div>
   </div>
 </wicket:extend>
