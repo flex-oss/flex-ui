@@ -13,6 +13,7 @@
  */
 package org.cdlflex.ui.behavior;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 import org.apache.wicket.Component;
@@ -81,6 +82,14 @@ public class ButtonBehaviorTest extends AbstractWicketPageTest {
 
         TagTester tag = createTag(render(page), button);
         assertTrue(tag.getAttributeContains("class", "btn-lg"));
+    }
+
+    @Test
+    public void buttonBehaviorWithTypeNone_addsNoCssClasses() throws Exception {
+        button.add(new ButtonBehavior(Buttons.Type.NONE, Buttons.Size.LARGE));
+
+        TagTester tag = createTag(render(page), button);
+        assertEquals("", tag.getAttribute("class"));
     }
 
     public class TestPage extends WebPage {

@@ -13,13 +13,11 @@
  */
 package org.cdlflex.ui.behavior;
 
-import org.apache.wicket.model.AbstractReadOnlyModel;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
-import org.cdlflex.ui.markup.css.Buttons;
 import org.cdlflex.ui.markup.css.Buttons.Size;
 import org.cdlflex.ui.markup.css.Buttons.Type;
-import org.cdlflex.ui.util.Strings;
+import org.cdlflex.ui.model.ButtonCssClassNameModel;
 
 /**
  * A behavior that controls the size and type of a bootstrap button. This can be added to arbitrary components and will
@@ -32,8 +30,7 @@ public class ButtonBehavior extends CssClassNameAppender {
     public static final Type DEFAULT_TYPE = Type.DEFAULT;
     public static final Size DEFAULT_SIZE = Size.MEDIUM;
 
-    private IModel<Type> buttonType;
-    private IModel<Size> buttonSize;
+    private final ButtonCssClassNameModel replaceModel;
 
     public ButtonBehavior() {
         this(DEFAULT_TYPE, DEFAULT_SIZE);
@@ -52,9 +49,12 @@ public class ButtonBehavior extends CssClassNameAppender {
     }
 
     public ButtonBehavior(IModel<Type> buttonType, IModel<Size> buttonSize) {
-        super(new ButtonCssClassNameModel(buttonType, buttonSize));
-        this.buttonType = buttonType;
-        this.buttonSize = buttonSize;
+        this(new ButtonCssClassNameModel(buttonType, buttonSize));
+    }
+
+    public ButtonBehavior(ButtonCssClassNameModel buttonCssClassNameModel) {
+        super(buttonCssClassNameModel);
+        this.replaceModel = buttonCssClassNameModel;
     }
 
     public Type getType() {
@@ -67,7 +67,7 @@ public class ButtonBehavior extends CssClassNameAppender {
      * @param type the type to set
      */
     public void setType(Type type) {
-        this.getButtonType().setObject(type);
+        getButtonType().setObject(type);
     }
 
     public Size getSize() {
@@ -80,47 +80,23 @@ public class ButtonBehavior extends CssClassNameAppender {
      * @param size the size to set
      */
     public void setSize(Size size) {
-        this.getButtonSize().setObject(size);
+        getButtonSize().setObject(size);
     }
 
     public IModel<Type> getButtonType() {
-        return buttonType;
+        return replaceModel.getButtonType();
     }
 
     public void setButtonType(IModel<Type> buttonType) {
-        this.buttonType = buttonType;
+        replaceModel.setButtonType(buttonType);
     }
 
     public IModel<Size> getButtonSize() {
-        return buttonSize;
+        return replaceModel.getButtonSize();
     }
 
     public void setButtonSize(IModel<Size> buttonSize) {
-        this.buttonSize = buttonSize;
-    }
-
-    /**
-     * Concatenates Type and Size css class names and any others required for rendering bootstrap buttons.
-     */
-    public static class ButtonCssClassNameModel extends AbstractReadOnlyModel<String> {
-
-        private static final long serialVersionUID = 1L;
-
-        private IModel<Type> buttonType;
-        private IModel<Size> buttonSize;
-
-        public ButtonCssClassNameModel(IModel<Type> buttonType, IModel<Size> buttonSize) {
-            this.buttonType = buttonType;
-            this.buttonSize = buttonSize;
-        }
-
-        @Override
-        public String getObject() {
-            String size = buttonSize.getObject().getCssClassName();
-            String type = buttonType.getObject().getCssClassName();
-
-            return Strings.join(" ", Buttons.CSS_CLASS, size, type);
-        }
+        replaceModel.setButtonSize(buttonSize);
     }
 
 }
