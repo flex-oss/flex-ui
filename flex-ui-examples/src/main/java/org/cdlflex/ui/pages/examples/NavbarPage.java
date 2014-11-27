@@ -22,11 +22,11 @@ import org.apache.wicket.markup.html.link.AbstractLink;
 import org.apache.wicket.markup.html.link.BookmarkablePageLink;
 import org.apache.wicket.model.Model;
 import org.cdlflex.ui.markup.css.icon.GlyphIconType;
-import org.cdlflex.ui.markup.html.navbar.Navbar;
-import org.cdlflex.ui.markup.html.navbar.NavbarBookmarkablePageLink;
-import org.cdlflex.ui.markup.html.navbar.NavbarDropDown;
-import org.cdlflex.ui.markup.html.navbar.NavbarLink;
-import org.cdlflex.ui.markup.html.navbar.Position;
+import org.cdlflex.ui.markup.html.nav.Navbar;
+import org.cdlflex.ui.markup.html.nav.NavbarBookmarkablePageLink;
+import org.cdlflex.ui.markup.html.nav.NavbarDropDown;
+import org.cdlflex.ui.markup.html.nav.NavbarLink;
+import org.cdlflex.ui.markup.html.nav.Position;
 import org.cdlflex.ui.pages.ExamplePage;
 import org.cdlflex.ui.pages.HomePage;
 

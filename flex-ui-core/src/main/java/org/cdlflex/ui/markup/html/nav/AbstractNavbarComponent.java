@@ -11,7 +11,7 @@
  *    See the License for the specific language governing permissions and
  *    limitations under the License.
  */
-package org.cdlflex.ui.markup.html.navbar;
+package org.cdlflex.ui.markup.html.nav;
 
 import org.apache.wicket.Component;
 import org.apache.wicket.markup.html.list.ListItem;

@@ -11,7 +11,7 @@
  *    See the License for the specific language governing permissions and
  *    limitations under the License.
  */
-package org.cdlflex.ui.markup.html.navbar;
+package org.cdlflex.ui.markup.html.nav;
 
 /**
  * Position of within a Navbar.

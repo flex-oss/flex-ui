@@ -11,7 +11,7 @@
  *    See the License for the specific language governing permissions and
  *    limitations under the License.
  */
-package org.cdlflex.ui.markup.html.navbar;
+package org.cdlflex.ui.markup.html.nav;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -182,7 +182,7 @@ public class Navbar extends Panel {
 
     /**
      * Filters a list of {@link INavbarComponent} by their position, i.e. the return value of
-     * {@link org.cdlflex.ui.markup.html.navbar.INavbarComponent#getPosition()}.
+     * {@link org.cdlflex.ui.markup.html.nav.INavbarComponent#getPosition()}.
      */
     protected static class PositionFilter implements Collections.Predicate<INavbarComponent<? extends Component>> {
 
