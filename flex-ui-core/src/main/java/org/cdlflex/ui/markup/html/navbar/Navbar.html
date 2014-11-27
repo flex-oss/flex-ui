@@ -15,6 +15,16 @@
 
 -->
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:wicket="http://wicket.apache.org">
+<head>
+  <wicket:head>
+    <style type="text/css">
+      .nav > li > a > span.glyphicon,
+      .nav > li > a > i.glyphicon {
+        top: 2px;
+      }
+    </style>
+  </wicket:head>
+</head>
 <body>
 <wicket:panel>
   <div class="container-fluid" wicket:id="navbar-container">
@@ -46,10 +56,6 @@
 
   <wicket:fragment id="nav-fragment" wicket:id="nav-transparent">
     <wicket:container wicket:id="nav-component"></wicket:container>
-  </wicket:fragment>
-
-  <wicket:fragment id="nav-fragment" wicket:id="nav-div">
-    <div wicket:id="nav-component"></div>
   </wicket:fragment>
 
   <wicket:fragment id="nav-link" wicket:id="nav-link">

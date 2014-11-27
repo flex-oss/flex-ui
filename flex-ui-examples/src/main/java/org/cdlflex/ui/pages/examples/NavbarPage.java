@@ -21,6 +21,7 @@ import org.apache.wicket.Component;
 import org.apache.wicket.markup.html.link.AbstractLink;
 import org.apache.wicket.markup.html.link.BookmarkablePageLink;
 import org.apache.wicket.model.Model;
+import org.cdlflex.ui.markup.css.icon.GlyphIconType;
 import org.cdlflex.ui.markup.html.navbar.Navbar;
 import org.cdlflex.ui.markup.html.navbar.NavbarBookmarkablePageLink;
 import org.cdlflex.ui.markup.html.navbar.NavbarDropDown;
@@ -62,7 +63,7 @@ public class NavbarPage extends ExamplePage {
                 return Arrays.asList(new BookmarkablePageLink<>(id, NavbarPage.class).setBody(Model.of("Navbars")),
                         new BookmarkablePageLink<>(id, ButtonsPage.class).setBody(Model.of("Buttons")));
             }
-        });
+        }.setIconType(GlyphIconType.ASTERISK));
 
         navbar.add(new NavbarDropDown(Position.RIGHT, Model.of("Dropdown")) {
             @Override
@@ -71,8 +72,8 @@ public class NavbarPage extends ExamplePage {
                         new BookmarkablePageLink<>(id, ButtonsPage.class).setBody(Model.of("Buttons")));
             }
         });
-        navbar.add(new NavbarBookmarkablePageLink(Position.RIGHT, AlertsPage.class, Model.of("Alerts")));
-
+        navbar.add(new NavbarBookmarkablePageLink(Position.RIGHT, AlertsPage.class, Model.of("Alerts"))
+                .setIconType(GlyphIconType.BELL));
     }
 
     @Override

@@ -19,9 +19,10 @@ import org.apache.wicket.Component;
 import org.apache.wicket.markup.html.link.AbstractLink;
 import org.apache.wicket.markup.html.list.ListItem;
 import org.apache.wicket.model.IModel;
+import org.apache.wicket.model.Model;
 import org.cdlflex.ui.behavior.CssClassNameAppender;
-import org.cdlflex.ui.markup.css.Buttons.Size;
 import org.cdlflex.ui.markup.css.Buttons.Type;
+import org.cdlflex.ui.markup.css.icon.IconType;
 import org.cdlflex.ui.markup.html.button.DropDownButton;
 
 /**
@@ -30,19 +31,31 @@ import org.cdlflex.ui.markup.html.button.DropDownButton;
 public abstract class NavbarDropDown extends AbstractNavbarComponent<DropDownButton> {
 
     private IModel<?> displayModel;
+    private IModel<IconType> iconType;
 
-    protected NavbarDropDown(IModel<?> displayModel) {
+    public NavbarDropDown(IModel<?> displayModel) {
+        this(displayModel, null);
+    }
+
+    protected NavbarDropDown(IModel<?> displayModel, IModel<IconType> iconType) {
+        super();
         this.displayModel = displayModel;
+        this.iconType = iconType;
     }
 
     public NavbarDropDown(Position position, IModel<?> displayModel) {
+        this(position, displayModel, null);
+    }
+
+    protected NavbarDropDown(Position position, IModel<?> displayModel, IModel<IconType> iconType) {
         super(position);
         this.displayModel = displayModel;
+        this.iconType = iconType;
     }
 
     @Override
     public DropDownButton create(String id) {
-        return new DropDownButton(id, displayModel) {
+        return new DropDownButton(id, displayModel, iconType) {
             private static final long serialVersionUID = 1L;
 
             @Override
@@ -50,16 +63,30 @@ public abstract class NavbarDropDown extends AbstractNavbarComponent<DropDownBut
                 return NavbarDropDown.this.newSubMenuButtons(buttonMarkupId);
             }
 
-            @Override
-            protected void addButtonBehavior(IModel<Type> type, IModel<Size> size) {
-                // do not add button behavior to dropdown button in navbar
-            }
-        };
+        }.setType(Type.NONE);
     }
 
     @Override
     public void onAfterPopulateItem(ListItem<INavbarComponent<? extends Component>> item) {
         item.add(new CssClassNameAppender("dropdown"));
+    }
+
+    public IModel<IconType> getIconType() {
+        return iconType;
+    }
+
+    public NavbarDropDown setIconType(IModel<IconType> iconType) {
+        this.iconType = iconType;
+        return this;
+    }
+
+    public NavbarDropDown setIconType(IconType iconType) {
+        if (this.iconType == null) {
+            setIconType(Model.of(iconType));
+        } else {
+            this.iconType.setObject(iconType);
+        }
+        return this;
     }
 
     /**

@@ -54,6 +54,11 @@ public class Icon extends WebMarkupContainer {
         this.iconType = iconType;
     }
 
+    public boolean hasIconType() {
+        IModel<IconType> model = getIconType();
+        return model != null && model.getObject() != null;
+    }
+
     /**
      * Sets the icon type.
      * 

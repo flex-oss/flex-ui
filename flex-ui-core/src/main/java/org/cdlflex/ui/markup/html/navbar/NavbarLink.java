@@ -18,8 +18,11 @@ import org.apache.wicket.markup.html.link.AbstractLink;
 /**
  * An AbstractNavbarComponent that returns an AbstractLink. This class is used when rendering anchor tags within the
  * navigation list item.
+ * 
+ * @param <T> The concrete link type
  */
-public abstract class NavbarLink extends AbstractNavbarComponent<AbstractLink> {
+public abstract class NavbarLink<T extends AbstractLink> extends AbstractNavbarComponent<T> {
+
     public NavbarLink() {
         super();
     }

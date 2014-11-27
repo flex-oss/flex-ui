@@ -15,9 +15,11 @@ package org.cdlflex.ui.markup.html.navbar;
 
 import org.apache.wicket.Page;
 import org.apache.wicket.markup.html.link.AbstractLink;
-import org.apache.wicket.markup.html.link.BookmarkablePageLink;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
+import org.cdlflex.ui.markup.css.Buttons;
+import org.cdlflex.ui.markup.css.icon.IconType;
+import org.cdlflex.ui.markup.html.link.BookmarkablePageButton;
 
 /**
  * A NavbarLink that generates a {@code org.apache.wicket.markup.html.link.BookmarkablePageLink} from the given
@@ -28,6 +30,7 @@ public class NavbarBookmarkablePageLink extends NavbarLink {
     private Class<? extends Page> pageClass;
     private IModel<?> displayModel;
     private PageParameters parameters;
+    private IconType iconType;
 
     public NavbarBookmarkablePageLink(Class<? extends Page> pageClass, IModel<?> displayModel) {
         super();
@@ -43,30 +46,44 @@ public class NavbarBookmarkablePageLink extends NavbarLink {
 
     @Override
     public AbstractLink create(String id) {
-        return new BookmarkablePageLink<Page>(id, getPageClass(), getParameters()).setBody(getDisplayModel());
+        BookmarkablePageButton button = new BookmarkablePageButton<>(id, getPageClass(), getParameters());
+        button.setType(Buttons.Type.NONE).setIconType(getIconType()).setBody(getDisplayModel());
+        return button.setBody(getDisplayModel());
     }
 
     public Class<? extends Page> getPageClass() {
         return pageClass;
     }
 
-    public void setPageClass(Class<? extends Page> pageClass) {
+    public NavbarBookmarkablePageLink setPageClass(Class<? extends Page> pageClass) {
         this.pageClass = pageClass;
+        return this;
     }
 
     public IModel<?> getDisplayModel() {
         return displayModel;
     }
 
-    public void setDisplayModel(IModel<?> displayModel) {
+    public NavbarBookmarkablePageLink setDisplayModel(IModel<?> displayModel) {
         this.displayModel = displayModel;
+        return this;
     }
 
     public PageParameters getParameters() {
         return parameters;
     }
 
-    public void setParameters(PageParameters parameters) {
+    public NavbarBookmarkablePageLink setParameters(PageParameters parameters) {
         this.parameters = parameters;
+        return this;
+    }
+
+    public IconType getIconType() {
+        return iconType;
+    }
+
+    public NavbarBookmarkablePageLink setIconType(IconType iconType) {
+        this.iconType = iconType;
+        return this;
     }
 }

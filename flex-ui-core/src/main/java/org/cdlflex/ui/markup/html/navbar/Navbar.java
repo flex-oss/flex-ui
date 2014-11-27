@@ -19,14 +19,12 @@ import java.util.List;
 import org.apache.wicket.Component;
 import org.apache.wicket.markup.ComponentTag;
 import org.apache.wicket.markup.html.WebMarkupContainer;
-import org.apache.wicket.markup.html.link.AbstractLink;
 import org.apache.wicket.markup.html.list.ListItem;
 import org.apache.wicket.markup.html.list.ListView;
 import org.apache.wicket.markup.html.panel.Fragment;
 import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.model.IModel;
 import org.cdlflex.ui.behavior.CssClassNameAppender;
-import org.cdlflex.ui.markup.html.button.DropDownButton;
 import org.cdlflex.ui.util.Collections;
 
 /**
@@ -163,20 +161,23 @@ public class Navbar extends Panel {
         };
     }
 
-    private Component newNavElement(String id, INavbarComponent<? extends Component> navbarComponent) {
-        Component component = navbarComponent.create("nav-component");
+    private <T extends Component> Component newNavElement(String id, INavbarComponent<T> navbarComponent) {
+        T component = navbarComponent.create("nav-component");
+        return wrapComponent(id, navbarComponent, component);
+    }
+
+    private <T extends Component> Component wrapComponent(String id, INavbarComponent<T> navbarComponent, T component) {
         WebMarkupContainer container;
 
-        if (component instanceof DropDownButton) {
+        if (navbarComponent instanceof NavbarDropDown) {
             container = new Fragment(id, "nav-transparent", this);
-        } else if (component instanceof AbstractLink) {
+        } else if (navbarComponent instanceof NavbarLink) {
             container = new Fragment(id, "nav-link", this);
         } else {
             container = new Fragment(id, "nav-transparent", this);
         }
-        container.add(component);
 
-        return container;
+        return container.add(component);
     }
 
     /**
