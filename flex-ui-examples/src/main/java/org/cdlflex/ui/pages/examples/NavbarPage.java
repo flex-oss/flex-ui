@@ -48,7 +48,7 @@ public class NavbarPage extends ExamplePage {
             }
         });
 
-        navbar.add(new NavbarLink() {
+        navbar.add(new NavbarLink<AbstractLink>() {
             @Override
             public AbstractLink create(String id) {
                 return new BookmarkablePageLink<>(id, NavbarPage.class).setBody(Model.of("Navbars"));

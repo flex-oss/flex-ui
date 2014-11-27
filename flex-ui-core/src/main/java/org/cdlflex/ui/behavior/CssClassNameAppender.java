@@ -64,7 +64,7 @@ public class CssClassNameAppender extends AttributeAppender {
     }
 
     public CssClassNameAppender(String... values) {
-        this(Strings.join(" ", values));
+        this(Strings.join(" ", (Object[]) values));
     }
 
     public CssClassNameAppender(IModel<?> replaceModel) {
@@ -93,7 +93,7 @@ public class CssClassNameAppender extends AttributeAppender {
      */
     public static void append(ComponentTag tag, String... cssClasses) {
         String currentValue = tag.getAttribute("class");
-        String appendValue = Strings.join(" ", cssClasses);
+        String appendValue = Strings.join(" ", (Object[]) cssClasses);
 
         tag.put("class", Strings.unique(" ", currentValue, appendValue));
     }

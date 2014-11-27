@@ -53,6 +53,17 @@ public class CssClassNameAppenderTest extends AbstractWicketPageTest {
     }
 
     @Test
+    public void varargsConstructor_appendsClassesCorrectly() throws Exception {
+        page.label.add(new CssClassNameAppender("a", "b", "c"));
+
+        TagTester tag = createTagById(render(page), "label");
+
+        assertTrue(tag.getAttributeContains("class", "a"));
+        assertTrue(tag.getAttributeContains("class", "b"));
+        assertTrue(tag.getAttributeContains("class", "c"));
+    }
+
+    @Test
     public void addSameClassTwiceToTagContainingNoClasses_appendsClassCorrectly() throws Exception {
         page.label.add(new CssClassNameAppender("a"));
         page.label.add(new CssClassNameAppender("a"));

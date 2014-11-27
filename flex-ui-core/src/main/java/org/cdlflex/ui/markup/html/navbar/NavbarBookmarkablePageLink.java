@@ -25,7 +25,7 @@ import org.cdlflex.ui.markup.html.link.BookmarkablePageButton;
  * A NavbarLink that generates a {@code org.apache.wicket.markup.html.link.BookmarkablePageLink} from the given
  * parameters.
  */
-public class NavbarBookmarkablePageLink extends NavbarLink {
+public class NavbarBookmarkablePageLink extends NavbarLink<AbstractLink> {
 
     private Class<? extends Page> pageClass;
     private IModel<?> displayModel;
@@ -46,7 +46,7 @@ public class NavbarBookmarkablePageLink extends NavbarLink {
 
     @Override
     public AbstractLink create(String id) {
-        BookmarkablePageButton button = new BookmarkablePageButton<>(id, getPageClass(), getParameters());
+        BookmarkablePageButton<?> button = new BookmarkablePageButton<>(id, getPageClass(), getParameters());
         button.setType(Buttons.Type.NONE).setIconType(getIconType()).setBody(getDisplayModel());
         return button.setBody(getDisplayModel());
     }
