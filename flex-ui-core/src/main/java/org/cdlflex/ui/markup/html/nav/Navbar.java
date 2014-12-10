@@ -14,6 +14,7 @@
 package org.cdlflex.ui.markup.html.nav;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 import org.apache.wicket.Component;
@@ -58,6 +59,17 @@ public class Navbar extends Panel {
      */
     public <T extends Component> Navbar add(INavbarComponent<T> component) {
         this.components.add(component);
+        return this;
+    }
+
+    /**
+     * Uses the given INavbarComponent to create a component within the bar.
+     * 
+     * @param components the component factories
+     * @return this for chaining
+     */
+    public Navbar add(Collection<? extends INavbarComponent<? extends Component>> components) {
+        this.components.addAll(components);
         return this;
     }
 
