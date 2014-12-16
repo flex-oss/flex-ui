@@ -21,15 +21,29 @@
 
   <div class="row">
     <div class="col-md-12">
+      <p>
+        This opens a simple modal dialog that uses a <code>Person</code> display model. It also demonstrates possible
+        interaction via AJAX.
+      </p>
+      <button wicket:id="open-person-detail-dialog" class="btn btn-default">Open details dialog</button>
 
-      <button class="btn btn-default" wicket:id="open-person-detail-dialog">Details</button>
-      <button class="btn btn-primary" wicket:id="open-person-edit-dialog">Edit</button>
-
-      <div wicket:id="person-detail-dialog" id="person-detail-dialog"></div>
-      <div wicket:id="person-edit-dialog" id="person-edit-dialog"></div>
-
+      <div wicket:id="person-detail-dialog"></div>
     </div>
   </div>
+
+  <hr/>
+
+  <div class="row">
+    <div class="col-md-12">
+      <p>
+        This opens a dialog that holds a form using the same model as the dialog above.
+      </p>
+      <button class="btn btn-primary" wicket:id="open-person-edit-dialog">Open edit-form dialog</button>
+
+      <div wicket:id="person-edit-dialog"></div>
+    </div>
+  </div>
+
 </wicket:extend>
 </body>
 </html>
