@@ -33,6 +33,7 @@
 
   <properties>
     <jetty.version>7.6.13.v20130916</jetty.version>
+    <maven-war-plugin.version>2.5</maven-war-plugin.version>
   </properties>
 
   <build>
@@ -75,6 +76,14 @@
 
       <plugin>
         <artifactId>maven-compiler-plugin</artifactId>
+      </plugin>
+
+      <plugin>
+        <artifactId>maven-war-plugin</artifactId>
+        <version>${maven-war-plugin.version}</version>
+        <configuration>
+          <warName>${project.artifactId}</warName>
+        </configuration>
       </plugin>
 
       <plugin>
