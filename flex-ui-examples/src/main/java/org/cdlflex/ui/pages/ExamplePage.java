@@ -17,7 +17,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.wicket.Page;
+import org.apache.wicket.markup.html.link.AbstractLink;
 import org.apache.wicket.markup.html.link.BookmarkablePageLink;
+import org.apache.wicket.markup.html.link.ExternalLink;
 import org.apache.wicket.markup.html.list.ListItem;
 import org.apache.wicket.markup.html.list.ListView;
 import org.apache.wicket.model.IModel;
@@ -91,6 +93,8 @@ public class ExamplePage extends BasePage {
             }
         });
 
+        add(newJavaSourcesLink("link-java-sources"));
+        add(newHtmlSourcesLink("link-html-sources"));
     }
 
     /**
@@ -100,6 +104,19 @@ public class ExamplePage extends BasePage {
      */
     public List<LinkItem> getLinks() {
         return links;
+    }
+
+    protected AbstractLink newJavaSourcesLink(String id) {
+        String root = "https://raw.githubusercontent.com/flex-oss/flex-ui/master/flex-ui-examples/src/main/java";
+        String path = ExamplePage.this.getClass().getCanonicalName().replace('.', '/');
+        return new ExternalLink(id, String.format("%s/%s.java", root, path));
+    }
+
+
+    protected AbstractLink newHtmlSourcesLink(String id) {
+        String root = "https://raw.githubusercontent.com/flex-oss/flex-ui/master/flex-ui-examples/src/main/java";
+        String path = ExamplePage.this.getClass().getCanonicalName().replace('.', '/');
+        return new ExternalLink(id, String.format("%s/%s.html", root, path));
     }
 
     /**
