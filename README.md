@@ -26,6 +26,17 @@ Main features
 * AJAX extensions for many of these components
 * Substantial extension of Wicket's `DataTable` API and functionality
 * Numerous other re-usable Component and Behavior extensions that cover common development use-cases 
+               
+Usage
+-----
+
+Flex-UI is hosted on maven-central and can easily be integrated into your project using maven
+
+    <dependency>
+        <groupId>org.cdlflex</groupId>
+        <artifactId>flex-ui-core</artifactId>
+        <version>add current version here</version>
+    </dependency>
 
 Components
 ----------
@@ -43,3 +54,10 @@ Flex-UI aims to be a pure Wicket extension and has few dependencies. Namely
 * `wicket-extensions`
 * `wicket-util`
 * `wicket-js`
+
+Building
+--------
+
+Build the entire project using Maven
+
+    mvn clean install
