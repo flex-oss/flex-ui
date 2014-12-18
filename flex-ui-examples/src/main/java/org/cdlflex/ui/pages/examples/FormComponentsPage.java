@@ -15,9 +15,14 @@ package org.cdlflex.ui.pages.examples;
 
 import java.util.Arrays;
 
+import org.apache.wicket.markup.html.form.DropDownChoice;
 import org.apache.wicket.markup.html.form.Form;
+import org.cdlflex.ui.markup.css.Buttons;
 import org.cdlflex.ui.markup.html.form.ButtonMultipleChoice;
+import org.cdlflex.ui.markup.html.form.ButtonRadioChoice;
+import org.cdlflex.ui.markup.html.form.ClassChoiceRenderer;
 import org.cdlflex.ui.markup.html.form.DateTimePicker;
+import org.cdlflex.ui.markup.html.form.EnumDropDownChoice;
 import org.cdlflex.ui.pages.ExamplePage;
 
 /**
@@ -31,9 +36,18 @@ public class FormComponentsPage extends ExamplePage {
         Form<Void> form = new Form<>("form");
 
         form.add(new DateTimePicker("date-time-picker", "y-MM-dd HH:mm"));
+        form.add(new DateTimePicker("date-picker", "dd.MM.y").setPickTime(false));
+        form.add(new DateTimePicker("time-picker", "HH:mm").setPickDate(false));
 
         form.add(new ButtonMultipleChoice<>("button-multiple-choice", Arrays.asList("Choice A", "Choice B",
                 "Choice C", "Choice D")));
+
+        form.add(new ButtonRadioChoice<>("button-radio-choice", Arrays.asList("Choice A", "Choice B", "Choice C",
+                "Choice D")));
+
+        form.add(new EnumDropDownChoice<>("enum-drop-down", Buttons.Type.class));
+        form.add(new DropDownChoice<>("class-drop-down", Arrays.asList(ButtonMultipleChoice.class,
+                ButtonRadioChoice.class, DropDownChoice.class), new ClassChoiceRenderer()));
 
         add(form);
     }

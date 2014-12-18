@@ -21,7 +21,7 @@
 
   <form wicket:id="form" class="form-horizontal" role="form">
     <div class="form-group">
-      <label for="date-time-picker" class="col-sm-2 control-label">DateTimePicker</label>
+      <label for="date-time-picker" class="col-sm-2 control-label">DateTimePicker<br>(y-MM-dd HH:mm)</label>
 
       <div class="col-sm-10">
         <input class="form-control" type="text" wicket:id="date-time-picker" id="date-time-picker"/>
@@ -29,10 +29,50 @@
     </div>
 
     <div class="form-group">
+      <label for="date-picker" class="col-sm-2 control-label">No time picker<br>(dd.MM.y)</label>
+
+      <div class="col-sm-10">
+        <input class="form-control" type="text" wicket:id="date-picker" id="date-picker"/>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="time-picker" class="col-sm-2 control-label">No date picker<br>(HH:mm)</label>
+
+      <div class="col-sm-10">
+        <input class="form-control" type="text" wicket:id="time-picker" id="time-picker"/>
+      </div>
+    </div>
+
+    <hr>
+
+    <div class="form-group">
       <label for="button-multiple-choice" class="col-sm-2 control-label">ButtonMultipleChoice</label>
 
       <div class="col-sm-10">
         <span wicket:id="button-multiple-choice" id="button-multiple-choice"></span>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="button-radio-choice" class="col-sm-2 control-label">ButtonRadioChoice</label>
+
+      <div class="col-sm-10">
+        <span wicket:id="button-radio-choice" id="button-radio-choice"></span>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="enum-drop-down" class="col-sm-2 control-label">EnumDropDownChoice</label>
+
+      <div class="col-sm-10">
+        <select class="form-control" wicket:id="enum-drop-down" id="enum-drop-down"></select>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="class-drop-down" class="col-sm-2 control-label">ClassChoiceRenderer</label>
+
+      <div class="col-sm-10">
+        <select class="form-control" wicket:id="class-drop-down" id="class-drop-down"></select>
       </div>
     </div>
   </form>
