@@ -44,6 +44,21 @@
     </div>
   </div>
 
+  <hr/>
+
+  <div class="row">
+    <div class="col-md-12">
+      <p>
+        This opens a dialog that holds an AJAX capable form using the same model as the dialog above. It uses a
+        JavaScript <code>confirm</code> call as precondition for the AJAX submit action, and updates the other model
+        dependent components via <code>AjaxRequestTarget</code>.
+      </p>
+      <button class="btn btn-info" wicket:id="open-person-ajax-edit-dialog">Open ajax edit-form dialog</button>
+
+      <div wicket:id="person-ajax-edit-dialog"></div>
+    </div>
+  </div>
+
 </wicket:extend>
 </body>
 </html>

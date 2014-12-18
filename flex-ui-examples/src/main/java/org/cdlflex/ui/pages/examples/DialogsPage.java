@@ -13,6 +13,8 @@
  */
 package org.cdlflex.ui.pages.examples;
 
+import static org.rauschig.wicketjs.jquery.JQuery.$;
+
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -25,6 +27,7 @@ import org.apache.wicket.model.CompoundPropertyModel;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
 import org.apache.wicket.model.PropertyModel;
+import org.cdlflex.ui.ajax.markup.html.dialog.form.AjaxFormDialog;
 import org.cdlflex.ui.behavior.ButtonBehavior;
 import org.cdlflex.ui.markup.css.Buttons;
 import org.cdlflex.ui.markup.html.basic.DateLabel;
@@ -34,7 +37,11 @@ import org.cdlflex.ui.markup.html.dialog.form.FormDialog;
 import org.cdlflex.ui.markup.html.form.DateTimePicker;
 import org.cdlflex.ui.model.Person;
 import org.cdlflex.ui.pages.ExamplePage;
+import org.rauschig.wicketjs.IJavaScript;
+import org.rauschig.wicketjs.JsCall;
+import org.rauschig.wicketjs.JsReturn;
 import org.rauschig.wicketjs.ajax.JsAjaxLink;
+import org.rauschig.wicketjs.markup.html.JsLink;
 
 /**
  * DialogsPage.
@@ -47,12 +54,15 @@ public class DialogsPage extends ExamplePage {
     public DialogsPage() {
         Dialog<Person> personDetailDialog = newPersonDetailDialog("person-detail-dialog");
         Dialog<Person> personEditDialog = newPersonEditDialog("person-edit-dialog");
+        Dialog<Person> personAjaxEditDialog = newPersonAjaxEditDialog("person-ajax-edit-dialog");
 
         add(personDetailDialog);
         add(personEditDialog);
+        add(personAjaxEditDialog);
 
         add(new DialogOpenLink("open-person-detail-dialog", personDetailDialog));
         add(new DialogOpenLink("open-person-edit-dialog", personEditDialog));
+        add(new DialogOpenLink("open-person-ajax-edit-dialog", personAjaxEditDialog));
     }
 
     private Dialog<Person> newPersonDetailDialog(String id) {
@@ -66,6 +76,40 @@ public class DialogsPage extends ExamplePage {
 
     private FormDialog<Person> newPersonEditDialog(String id) {
         return new PersonEditDialog(id, person);
+    }
+
+    private AjaxFormDialog<Person> newPersonAjaxEditDialog(String id) {
+        return new PersonAjaxEditDialog(id, person);
+    }
+
+    private class PersonAjaxEditDialog extends AjaxFormDialog<Person> {
+        private static final long serialVersionUID = 1L;
+
+        private PersonAjaxEditDialog(String id, IModel<Person> model) {
+            super(id, Model.of("Edit"), model);
+        }
+
+        @Override
+        public IJavaScript precondition() {
+            return new JsReturn(new JsCall("confirm", "Really submit?"));
+        }
+
+        @Override
+        protected void onSubmit(AjaxRequestTarget target, Form<Person> form) {
+            System.out.println("Ajax submit: " + getModelObject());
+
+            // make sure other model dependent components get updated
+            target.add(DialogsPage.this.get("person-detail-dialog"));
+            target.add(DialogsPage.this.get("person-edit-dialog"));
+        }
+
+        @Override
+        protected Form<Person> newForm(IModel<Person> model) {
+            Form<Person> form = new Form<>("form", new CompoundPropertyModel<>(model));
+            form.add(new TextField<>("name", String.class));
+            form.add(new DateTimePicker("birthday", "y-MM-dd").setPickTime(false));
+            return form;
+        }
     }
 
     private class PersonEditDialog extends FormDialog<Person> {
@@ -86,10 +130,6 @@ public class DialogsPage extends ExamplePage {
 
     private class PersonDetailDialog extends Dialog<Person> {
         private static final long serialVersionUID = 1L;
-
-        private PersonDetailDialog(String id) {
-            super(id);
-        }
 
         private PersonDetailDialog(String id, IModel<Person> model) {
             super(id, model);
@@ -120,7 +160,22 @@ public class DialogsPage extends ExamplePage {
                     container.setVisible(true);
                     target.add(container);
                 }
-            }.setBody(Model.of("Show ID")));
+            }.setBody(Model.of("Show ID (AJAX)")));
+
+            prependButton(new JsLink(Dialog.BUTTON_MARKUP_ID) {
+                private static final long serialVersionUID = 1L;
+
+                @Override
+                protected void onInitialize() {
+                    super.onInitialize();
+                    add(new ButtonBehavior(Buttons.Type.LINK));
+                }
+
+                @Override
+                public IJavaScript onClick() {
+                    return $(PersonDetailDialog.this.get("id")).toggle();
+                }
+            }.setBody(Model.of("Toggle ID box (JS)")));
         }
     }
 }
