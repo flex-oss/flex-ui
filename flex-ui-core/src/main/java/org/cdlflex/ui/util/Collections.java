@@ -135,6 +135,24 @@ public final class Collections {
     }
 
     /**
+     * Retain all elements of the given iterable that satisfy the given predicate. Others will be removed via
+     * {@link java.util.Iterator#remove()}.
+     * 
+     * @param iterable the iterable, iterators must support {@link java.util.Iterator#remove()}
+     * @param predicate the predicate
+     * @param <T> element type
+     */
+    public static <T> void retain(Iterable<T> iterable, Callback<T, Boolean> predicate) {
+        Iterator<T> iterator = iterable.iterator();
+
+        while (iterator.hasNext()) {
+            if (!predicate.call(iterator.next())) {
+                iterator.remove();
+            }
+        }
+    }
+
+    /**
      * Removes all objects from the given collection that satisfy the given predicate. Requires a collection that
      * supports {@link java.util.Iterator#remove()}.
      *
@@ -146,9 +164,7 @@ public final class Collections {
         Iterator<T> iterator = collection.iterator();
 
         while (iterator.hasNext()) {
-            T next = iterator.next();
-
-            if (predicate.call(next)) {
+            if (predicate.call(iterator.next())) {
                 iterator.remove();
             }
         }
@@ -342,6 +358,19 @@ public final class Collections {
     public static enum VisitorAction {
         CONTINUE,
         BREAK
+    }
+
+    /**
+     * Predicate implementation that returns true if the given object is not null.
+     * 
+     * @param <T> element type
+     */
+    public static class NotNullFilter<T> implements Predicate<T> {
+
+        @Override
+        public Boolean call(T object) {
+            return object != null;
+        }
     }
 
 }
