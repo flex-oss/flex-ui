@@ -1,7 +1,7 @@
 flex-ui
 =======
 
-[![Build Status](https://travis-ci.org/flex-oss/flex-ui.png?branch=master)](https://travis-ci.org/flex-oss/flex-ui)
+[![Build Status](https://travis-ci.org/flex-oss/flex-ui.png?branch=master)](https://travis-ci.org/flex-oss/flex-ui) [![Coverage Status](https://coveralls.io/repos/flex-oss/flex-ui/badge.png)](https://coveralls.io/r/flex-oss/flex-ui)
 
 Flex-UI is a free, open source set of reusable [Wicket](http://wicket.apache.org/) components and extensions that are
 used in the frontend solutions developed at the [CDL-Flex](http://cdlflex.org).
