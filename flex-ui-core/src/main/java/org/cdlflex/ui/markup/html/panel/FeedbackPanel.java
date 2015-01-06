@@ -63,7 +63,6 @@ public class FeedbackPanel extends org.apache.wicket.markup.html.panel.FeedbackP
      * @param isDismissible the flag
      * @return this for chaining
      */
-
     public FeedbackPanel setDismissible(boolean isDismissible) {
         this.dismissible = isDismissible;
         return this;

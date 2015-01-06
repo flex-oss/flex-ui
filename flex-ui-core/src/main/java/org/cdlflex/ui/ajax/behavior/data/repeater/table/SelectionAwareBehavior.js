@@ -16,7 +16,7 @@
  */
 (function ($) {
 
-    if(!$.widget) {
+    if (!$.widget) {
         console.error("jquery-ui widget factory is not defined");
         return;
     }
