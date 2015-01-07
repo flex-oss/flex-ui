@@ -12,3 +12,5 @@ After building Flex-UI, run the application with
     mvn jetty:run
 
 or find the `Start` class and execute it from your IDE.
+
+Then find the web application at <http://localhost:8080>
