@@ -24,6 +24,8 @@ import org.apache.wicket.model.PropertyModel;
  */
 public abstract class PropertyConvertingModel<T, C> extends AbstractReadOnlyModel<C> {
 
+    private static final long serialVersionUID = 1L;
+
     /**
      * The PropertyModel being converted
      */
