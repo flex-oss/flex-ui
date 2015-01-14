@@ -21,7 +21,7 @@
   <parent>
     <artifactId>flex-ui-parent</artifactId>
     <groupId>org.cdlflex</groupId>
-    <version>0.3.0-SNAPSHOT</version>
+    <version>0.3.0</version>
     <relativePath>..</relativePath>
   </parent>
 
@@ -91,7 +91,7 @@
         <artifactId>cobertura-maven-plugin</artifactId>
         <configuration>
           <skip>true</skip>
-          <check/>
+          <check />
         </configuration>
       </plugin>
 
