@@ -28,6 +28,7 @@ import org.apache.wicket.request.mapper.parameter.PageParameters;
 import org.apache.wicket.util.io.IClusterable;
 import org.cdlflex.ui.behavior.CssClassNameAppender;
 import org.cdlflex.ui.pages.examples.AlertsPage;
+import org.cdlflex.ui.pages.examples.BadgesPage;
 import org.cdlflex.ui.pages.examples.ButtonsPage;
 import org.cdlflex.ui.pages.examples.DialogsPage;
 import org.cdlflex.ui.pages.examples.ExamplesHomePage;
@@ -55,6 +56,7 @@ public class ExamplePage extends BasePage {
             add(new LinkItem(FormComponentsPage.class, Model.of("Form components")));
             add(new LinkItem(IconsPage.class, Model.of("Bootstrap GlyphIcons")));
             add(new LinkItem(ButtonsPage.class, Model.of("Buttons")));
+            add(new LinkItem(BadgesPage.class, Model.of("Badges")));
             add(new LinkItem(NavbarPage.class, Model.of("Navbars")));
             add(new LinkItem(DialogsPage.class, Model.of("Dialogs")));
             add(new LinkItem(TablePage.class, Model.of("Tables")));
@@ -111,7 +113,6 @@ public class ExamplePage extends BasePage {
         String path = ExamplePage.this.getClass().getCanonicalName().replace('.', '/');
         return new ExternalLink(id, String.format("%s/%s.java", root, path));
     }
-
 
     protected AbstractLink newHtmlSourcesLink(String id) {
         String root = "https://raw.githubusercontent.com/flex-oss/flex-ui/master/flex-ui-examples/src/main/java";
