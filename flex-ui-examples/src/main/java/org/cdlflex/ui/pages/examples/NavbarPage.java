@@ -16,7 +16,6 @@ package org.cdlflex.ui.pages.examples;
 import java.util.Arrays;
 import java.util.List;
 
-import org.apache.wicket.Application;
 import org.apache.wicket.Component;
 import org.apache.wicket.markup.html.link.AbstractLink;
 import org.apache.wicket.markup.html.link.BookmarkablePageLink;
@@ -27,17 +26,12 @@ import org.cdlflex.ui.markup.html.nav.NavbarBookmarkablePageLink;
 import org.cdlflex.ui.markup.html.nav.NavbarDropDown;
 import org.cdlflex.ui.markup.html.nav.NavbarLink;
 import org.cdlflex.ui.markup.html.nav.Position;
-import org.cdlflex.ui.pages.ExamplePage;
 import org.cdlflex.ui.pages.HomePage;
 
-public class NavbarPage extends ExamplePage {
+public class NavbarPage extends StripTagExamplePage {
     private static final long serialVersionUID = 1L;
 
-    private boolean stripTags;
-
     public NavbarPage() {
-        stripTags = Application.get().getMarkupSettings().getStripWicketTags();
-
         Navbar navbar;
         add(navbar = new Navbar("navbar") {
             private static final long serialVersionUID = 1L;
@@ -76,15 +70,4 @@ public class NavbarPage extends ExamplePage {
                 .setIconType(GlyphIconType.BELL));
     }
 
-    @Override
-    protected void onBeforeRender() {
-        super.onBeforeRender();
-        Application.get().getMarkupSettings().setStripWicketTags(true);
-    }
-
-    @Override
-    protected void onAfterRender() {
-        super.onAfterRender();
-        Application.get().getMarkupSettings().setStripWicketTags(stripTags);
-    }
 }

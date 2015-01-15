@@ -13,24 +13,18 @@
  */
 package org.cdlflex.ui.pages.examples;
 
-import org.apache.wicket.Application;
 import org.apache.wicket.model.Model;
 import org.cdlflex.ui.markup.css.Alerts.Level;
 import org.cdlflex.ui.markup.html.alert.Alert;
 import org.cdlflex.ui.markup.html.panel.AlertPanel;
-import org.cdlflex.ui.pages.ExamplePage;
 
 /**
  * AlertPanelPage.
  */
-public class AlertsPage extends ExamplePage {
+public class AlertsPage extends StripTagExamplePage {
     private static final long serialVersionUID = 1L;
 
-    private boolean stripTags;
-
     public AlertsPage() {
-        stripTags = Application.get().getMarkupSettings().getStripWicketTags();
-
         add(new Alert("alert-01"));
         add(new Alert("alert-02", Level.SUCCESS));
         add(new Alert("alert-03", Level.WARNING).setFade(true));
@@ -45,15 +39,4 @@ public class AlertsPage extends ExamplePage {
                 .setDismissible(false));
     }
 
-    @Override
-    protected void onBeforeRender() {
-        super.onBeforeRender();
-        Application.get().getMarkupSettings().setStripWicketTags(true);
-    }
-
-    @Override
-    protected void onAfterRender() {
-        super.onAfterRender();
-        Application.get().getMarkupSettings().setStripWicketTags(stripTags);
-    }
 }
