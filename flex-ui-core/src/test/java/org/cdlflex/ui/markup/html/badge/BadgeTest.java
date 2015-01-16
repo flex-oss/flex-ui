@@ -20,10 +20,10 @@ import static org.junit.Assert.assertSame;
 import org.apache.wicket.core.util.string.ComponentRenderer;
 import org.apache.wicket.model.Model;
 import org.apache.wicket.util.tester.TagTester;
-import org.cdlflex.ui.AbstractWicketPageTest;
+import org.cdlflex.ui.AbstractWicketTest;
 import org.junit.Test;
 
-public class BadgeTest extends AbstractWicketPageTest {
+public class BadgeTest extends AbstractWicketTest {
 
     @Test
     public void getDisplayModel_returnsCorrectModel() throws Exception {

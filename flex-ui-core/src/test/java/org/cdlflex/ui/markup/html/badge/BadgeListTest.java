@@ -30,11 +30,11 @@ import org.apache.wicket.util.tester.DummyHomePage;
 import org.apache.wicket.util.tester.TagTester;
 import org.apache.wicket.util.visit.IVisit;
 import org.apache.wicket.util.visit.IVisitor;
-import org.cdlflex.ui.AbstractWicketPageTest;
+import org.cdlflex.ui.AbstractWicketTest;
 import org.junit.Before;
 import org.junit.Test;
 
-public class BadgeListTest extends AbstractWicketPageTest {
+public class BadgeListTest extends AbstractWicketTest {
 
     BadgeList badgeList;
 

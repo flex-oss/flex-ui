@@ -20,7 +20,7 @@ import static org.junit.Assert.assertTrue;
 
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.util.tester.TagTester;
-import org.cdlflex.ui.AbstractWicketPageTest;
+import org.cdlflex.ui.AbstractWicketTest;
 import org.cdlflex.ui.markup.html.alert.Alert;
 import org.junit.Before;
 import org.junit.Test;
@@ -28,7 +28,7 @@ import org.junit.Test;
 /**
  * AlertTest.
  */
-public class AlertTest extends AbstractWicketPageTest {
+public class AlertTest extends AbstractWicketTest {
 
     private WebPage page;
     private String componentId = "alert";

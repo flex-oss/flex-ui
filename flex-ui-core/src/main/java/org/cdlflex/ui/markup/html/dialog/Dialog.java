@@ -89,6 +89,9 @@ public abstract class Dialog<T> extends GenericPanel<T> {
      */
     public Dialog<T> setTitle(IModel<?> title) {
         this.title = title;
+        if (titleLabel != null) {
+            titleLabel.setDefaultModel(title);
+        }
         return this;
     }
 
