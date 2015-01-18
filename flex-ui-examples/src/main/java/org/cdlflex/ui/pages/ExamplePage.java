@@ -27,6 +27,7 @@ import org.apache.wicket.model.Model;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
 import org.apache.wicket.util.io.IClusterable;
 import org.cdlflex.ui.behavior.CssClassNameAppender;
+import org.cdlflex.ui.markup.html.badge.notifybar.NotifyBar;
 import org.cdlflex.ui.pages.examples.AlertsPage;
 import org.cdlflex.ui.pages.examples.BadgesPage;
 import org.cdlflex.ui.pages.examples.ButtonsPage;
@@ -37,6 +38,7 @@ import org.cdlflex.ui.pages.examples.FlexTablePage;
 import org.cdlflex.ui.pages.examples.FormComponentsPage;
 import org.cdlflex.ui.pages.examples.IconsPage;
 import org.cdlflex.ui.pages.examples.NavbarPage;
+import org.cdlflex.ui.pages.examples.NotifyBarPage;
 import org.cdlflex.ui.pages.examples.TablePage;
 
 /**
@@ -57,6 +59,7 @@ public class ExamplePage extends BasePage {
             add(new LinkItem(IconsPage.class, Model.of("Bootstrap GlyphIcons")));
             add(new LinkItem(ButtonsPage.class, Model.of("Buttons")));
             add(new LinkItem(BadgesPage.class, Model.of("Badges")));
+            add(new LinkItem(NotifyBarPage.class, Model.of("NotifyBar")));
             add(new LinkItem(NavbarPage.class, Model.of("Navbars")));
             add(new LinkItem(DialogsPage.class, Model.of("Dialogs")));
             add(new LinkItem(TablePage.class, Model.of("Tables")));
