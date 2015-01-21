@@ -15,6 +15,7 @@ package org.cdlflex.ui.util;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -259,6 +260,29 @@ public final class Collections {
         }
 
         return list;
+    }
+
+    /**
+     * Sorts a list.
+     * 
+     * @param list list to sort
+     * @param <T> Collection element type
+     * @see java.util.Collections#sort(java.util.List)
+     */
+    public static <T extends Comparable<? super T>> void sort(List<T> list) {
+        java.util.Collections.sort(list);
+    }
+
+    /**
+     * Sorts a list.
+     * 
+     * @param list list to sort
+     * @param comparator comparator to use
+     * @param <T> Collection element type
+     * @see java.util.Collections#sort(java.util.List, java.util.Comparator)
+     */
+    public static <T> void sort(List<T> list, Comparator<T> comparator) {
+        java.util.Collections.sort(list, comparator);
     }
 
     /**
