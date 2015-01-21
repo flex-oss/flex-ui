@@ -16,8 +16,12 @@
 -->
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:wicket="http://wicket.apache.org">
 <body>
-<wicket:extend>
-  Examples
-</wicket:extend>
+<wicket:panel>
+    <li wicket:id="badges">
+      <a wicket:id="link" class="badge-item-link">
+        <span wicket:id="label" class="badge-item-label"></span> <span wicket:id="badge"></span>
+      </a>
+    </li>
+</wicket:panel>
 </body>
 </html>
