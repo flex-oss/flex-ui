@@ -15,9 +15,11 @@ package org.cdlflex.ui.markup.html;
 
 import static org.junit.Assert.assertEquals;
 
+import java.util.Arrays;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+import org.apache.wicket.model.Model;
 import org.junit.Test;
 
 public class TagTest {
@@ -80,10 +82,26 @@ public class TagTest {
         Map<String, Object> map = new LinkedHashMap<>();
         map.put("foo", "bar");
         map.put("answer", "42");
+        map.put("string", new StringModel("stringModel"));
+        map.put("list", Arrays.asList("foo", "bar"));
 
         tag.attrs(map);
 
-        assertEquals("<span answer=\"42\" foo=\"bar\" bar=\"baz\"></span>", tag.toString());
+        assertEquals("<span string=\"stringModel\" answer=\"42\" list=\"foo bar\" foo=\"bar\" bar=\"baz\"></span>",
+                tag.toString());
+    }
+
+    public class StringModel extends Model<String> {
+        private static final long serialVersionUID = 1L;
+
+        public StringModel(String object) {
+            super(object);
+        }
+
+        @Override
+        public String toString() {
+            return getObject();
+        }
     }
 
 }

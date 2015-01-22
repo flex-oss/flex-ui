@@ -16,14 +16,22 @@ package org.cdlflex.ui.behavior;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
+import java.io.Serializable;
+import java.util.Arrays;
+import java.util.List;
+
+import org.apache.wicket.markup.ComponentTag;
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.markup.html.basic.Label;
+import org.apache.wicket.markup.parser.XmlTag;
+import org.apache.wicket.model.Model;
 import org.apache.wicket.util.tester.TagTester;
-import org.cdlflex.ui.AbstractWicketPageTest;
+import org.cdlflex.ui.AbstractWicketTest;
+import org.cdlflex.ui.markup.css.ICssClassNameProvider;
 import org.junit.Before;
 import org.junit.Test;
 
-public class CssClassNameAppenderTest extends AbstractWicketPageTest {
+public class CssClassNameAppenderTest extends AbstractWicketTest {
 
     private LabelPage page;
 
@@ -102,7 +110,46 @@ public class CssClassNameAppenderTest extends AbstractWicketPageTest {
         assertEquals("label", tag.getAttribute("class"));
     }
 
+    @Test
+    public void append_withVarargs_appendsAllClasses() throws Exception {
+        ComponentTag a = new ComponentTag("a", XmlTag.TagType.OPEN);
+        CssClassNameAppender.append(a, "foo", "bar", "foo");
+
+        List<String> classes = Arrays.asList(a.getAttribute("class").split(" "));
+        assertEquals(2, classes.size());
+        assertTrue("class 'foo' not set", classes.contains("foo"));
+        assertTrue("class 'bar' not set", classes.contains("bar"));
+    }
+
+    @Test
+    public void append_withICssClassNameProvider_appendsClassesCorrectly() throws Exception {
+        ComponentTag a = new ComponentTag("a", XmlTag.TagType.OPEN);
+
+        CssClassNameAppender.append(a, new CssClassNameProvider());
+
+        List<String> classes = Arrays.asList(a.getAttribute("class").split(" "));
+        assertEquals(2, classes.size());
+        assertTrue("class 'foo' not set", classes.contains("foo"));
+        assertTrue("class 'bar' not set", classes.contains("bar"));
+    }
+
+    @SuppressWarnings("unchecked")
+    @Test
+    public void append_withICssClassNameProviderModel_appendsClassesCorrectly() throws Exception {
+        ComponentTag a = new ComponentTag("a", XmlTag.TagType.OPEN);
+
+        Model<CssClassNameProvider> model = new Model<>(new CssClassNameProvider());
+        CssClassNameAppender.append(a, model);
+
+        List<String> classes = Arrays.asList(a.getAttribute("class").split(" "));
+        assertEquals(2, classes.size());
+        assertTrue("class 'foo' not set", classes.contains("foo"));
+        assertTrue("class 'bar' not set", classes.contains("bar"));
+    }
+
     class LabelPage extends WebPage {
+        private static final long serialVersionUID = 1L;
+
         Label label = new Label("label");
         Label labelWithClass = new Label("label-with-class");
 
@@ -111,4 +158,12 @@ public class CssClassNameAppenderTest extends AbstractWicketPageTest {
         }
     }
 
+    static class CssClassNameProvider implements ICssClassNameProvider, Serializable {
+        private static final long serialVersionUID = 1L;
+
+        @Override
+        public String getCssClassName() {
+            return "foo bar foo";
+        }
+    }
 }

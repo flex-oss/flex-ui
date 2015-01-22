@@ -20,12 +20,12 @@ import org.apache.wicket.Component;
 import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.util.tester.TagTester;
-import org.cdlflex.ui.AbstractWicketPageTest;
+import org.cdlflex.ui.AbstractWicketTest;
 import org.cdlflex.ui.markup.css.Buttons;
 import org.junit.Before;
 import org.junit.Test;
 
-public class ButtonBehaviorTest extends AbstractWicketPageTest {
+public class ButtonBehaviorTest extends AbstractWicketTest {
 
     private Component button;
     private WebPage page;

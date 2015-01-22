@@ -20,11 +20,11 @@ import org.apache.wicket.core.util.string.ComponentRenderer;
 import org.apache.wicket.markup.html.link.AbstractLink;
 import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.model.Model;
-import org.cdlflex.ui.AbstractWicketPageTest;
+import org.cdlflex.ui.AbstractWicketTest;
 import org.junit.Before;
 import org.junit.Test;
 
-public class DummyLinkTest extends AbstractWicketPageTest {
+public class DummyLinkTest extends AbstractWicketTest {
 
     private ContainerPanel containerPanel;
 

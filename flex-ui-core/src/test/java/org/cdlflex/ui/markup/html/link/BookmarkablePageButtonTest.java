@@ -24,13 +24,13 @@ import org.apache.wicket.model.Model;
 import org.apache.wicket.util.tester.TagTester;
 import org.apache.wicket.util.visit.IVisit;
 import org.apache.wicket.util.visit.IVisitor;
-import org.cdlflex.ui.AbstractWicketPageTest;
+import org.cdlflex.ui.AbstractWicketTest;
 import org.cdlflex.ui.markup.css.Buttons;
 import org.cdlflex.ui.markup.css.icon.GlyphIconType;
 import org.junit.Before;
 import org.junit.Test;
 
-public class BookmarkablePageButtonTest extends AbstractWicketPageTest {
+public class BookmarkablePageButtonTest extends AbstractWicketTest {
 
     private TestPage testPage;
 

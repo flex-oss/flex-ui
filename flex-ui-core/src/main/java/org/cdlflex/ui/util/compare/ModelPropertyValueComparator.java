@@ -24,7 +24,7 @@ import org.apache.wicket.core.util.lang.PropertyResolver;
  * @param <M> The type of the model object
  * @param <T> The type of the model objects property
  */
-public abstract class ModelPropertyValueComparator<M, T> implements Comparator<M> {
+public class ModelPropertyValueComparator<M, T> implements Comparator<M> {
 
     private String propertyExpression;
 
