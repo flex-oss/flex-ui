@@ -16,9 +16,10 @@ package org.cdlflex.ui.markup.html;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+
+import org.cdlflex.ui.util.Strings;
 
 /**
  * Helper class to build markup tag strings.
@@ -166,7 +167,7 @@ public class Tag implements Serializable {
             str.append(">");
             List<Tag> childrenTags = getChildren();
             if (childrenTags != null && !childrenTags.isEmpty()) {
-                join(childrenTags, "", str);
+                Strings.joinInto(str, "", childrenTags);
             }
             str.append("</").append(name).append(">");
         }
@@ -194,39 +195,12 @@ public class Tag implements Serializable {
 
     private void appendAttributeValue(Object value, StringBuilder str) {
         if (value.getClass().isArray()) {
-            join((Object[]) value, " ", str);
+            Strings.joinInto(str, " ", (Object[]) value);
         } else if (value instanceof Iterable) {
-            join((Iterable<?>) value, " ", str);
+            Strings.joinInto(str, " ", (Iterable<?>) value);
         } else {
             str.append(String.valueOf(value));
         }
-    }
-
-    private void join(Iterator<?> iterator, String separator, StringBuilder str) {
-        while (iterator.hasNext()) {
-            str.append(String.valueOf(iterator.next()));
-
-            if (iterator.hasNext()) {
-                str.append(separator);
-            }
-        }
-    }
-
-    private void join(Iterable<?> collection, String separator, StringBuilder str) {
-        join(collection.iterator(), separator, str);
-    }
-
-    private void join(Object[] array, String separator, StringBuilder str) {
-        if (array.length == 0) {
-            return;
-        }
-
-        int i = 0;
-        for (; i < (array.length - 1); i++) {
-            str.append(String.valueOf(array[i]));
-            str.append(separator);
-        }
-        str.append(String.valueOf(array[i]));
     }
 
     /**
