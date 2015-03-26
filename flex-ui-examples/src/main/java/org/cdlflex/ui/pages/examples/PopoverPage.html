@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+       Licensed under the Apache License, Version 2.0 (the "License");
+       you may not use this file except in compliance with the License.
+       You may obtain a copy of the License at
+
+           http://www.apache.org/licenses/LICENSE-2.0
+
+       Unless required by applicable law or agreed to in writing, software
+       distributed under the License is distributed on an "AS IS" BASIS,
+       WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+       See the License for the specific language governing permissions and
+       limitations under the License.
+
+-->
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:wicket="http://wicket.apache.org">
+<head>
+  <wicket:head>
+    <style type="text/css">
+      .popover-buttons button:last-child {
+        margin-right: 0;
+      }
+      .popover-buttons button {
+        margin-right: 10px;
+      }
+    </style>
+  </wicket:head>
+</head>
+<body>
+<wicket:extend>
+  <h1 class="page-header">Popover</h1>
+
+  <section>
+    <h2>Example button with popover behavior, with a title</h2>
+
+    <button wicket:id="default-button">Click to toggle popover</button>
+  </section>
+
+  <section>
+    <h2>Four directions</h2>
+
+    <div class="popover-buttons">
+      <button wicket:id="left" class="btn btn-sm btn-default" >Popover on left</button>
+      <button wicket:id="top" class="btn btn-sm btn-default">Popover on top</button>
+      <button wicket:id="bottom" class="btn btn-sm btn-default">Popover on bottom</button>
+      <button wicket:id="right" class="btn btn-sm btn-default">Popover on right</button>
+    </div>
+  </section>
+
+  <section>
+    <h2>Trigger</h2>
+    <p>
+      There are various triggers that can be set, which configures the trigger behavior of the popover.
+    </p>
+
+    <h3>Hover</h3>
+    <p>
+      Hover me <i wicket:id="hover"></i>
+    </p>
+
+    <h3>Focus</h3>
+    <form role="form" class="form-inline">
+      <div class="form-group">
+        <label for="focus">Focus me (works also by click this label)</label>
+        <input wicket:id="focus" id="focus" type="text" class="form-control">
+      </div>
+    </form>
+  </section>
+
+</wicket:extend>
+</body>
+</html>
