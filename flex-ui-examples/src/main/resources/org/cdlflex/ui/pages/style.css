@@ -121,3 +121,72 @@ body {
     display: inline-block;
     border-radius: 50%;
 }
+
+/*
+ * Example boxes
+ */
+
+.example h2 {
+    font-size: 1.6em;
+}
+
+.example .item {
+    background-color: #fff;
+
+    border: 1px solid #ddd;
+    border-radius: 4px 4px 0 0;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+
+    position: relative;
+    padding: 45px 15px 15px;
+    margin: 0 0 15px;
+}
+
+.example .item:after {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    font-size: 12px;
+    font-weight: 700;
+    color: #959595;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    content: "Example";
+}
+
+.example .source {
+    -webkit-padding-start: 0;
+}
+
+.example .source > li {
+    display: block;
+    position: relative;
+}
+
+.example .source > li > pre {
+    margin: -1px 0 0 0;
+    border-radius: 0;
+}
+
+.example .source > li:first-child > pre {
+    margin-top: -16px;
+}
+
+.example .source > li:last-child > pre {
+    border-radius: 0 0 4px 4px;
+}
+
+.example .source > li > .corner {
+    position: absolute;
+    top: 1px;
+    right: 1px;
+    padding: 5px 10px;
+
+    background-color: #fff;
+    border: 1px solid #e1e1e8;
+
+    border-right: 0;
+    border-top: 0;
+    border-radius: 0 0 0 4px;
+}

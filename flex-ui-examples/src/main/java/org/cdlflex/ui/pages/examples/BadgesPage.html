@@ -26,7 +26,7 @@
 
   <div class="row">
     <div class="col-md-12">
-      <section>
+      <section class="example">
         <h2>Simple Badges</h2>
 
         <p>
@@ -34,18 +34,78 @@
           and they work transparently with bootstrap classes.
         </p>
 
-        <a href="#">Inbox <span wicket:id="inbox"></span></a>
-        <br/><br/>
-        <a href="#" class="btn btn-primary">Messages <span wicket:id="messages"></span></a>
-
+        <div class="item">
+          <a href="#">Inbox <span wicket:id="inbox"></span></a>
+          <br/><br/>
+          <a href="#" class="btn btn-primary">Messages <span wicket:id="messages"></span></a>
+        </div>
+        <ul class="source">
+          <li class="java">
+            <span class="corner">Java</span>
+            <pre>add(new Badge("inbox", Model.of(42)));
+add(new Badge("messages", Model.of(4)));</pre>
+          </li>
+          <li class="html">
+            <span class="corner">Markup</span>
+            <pre>&lt;a href="#"&gt;Inbox &lt;span wicket:id="inbox"&gt;&lt;/span&gt;&lt;/a&gt;
+&lt;br/&gt;&lt;br/&gt;
+&lt;a href="#" class="btn btn-primary"&gt;Messages &lt;span wicket:id="messages"&gt;&lt;/span&gt;&lt;/a&gt;</pre>
+          </li>
+        </ul>
       </section>
-      <section>
+
+      <section class="example">
         <h2>BadgeList</h2>
         <p>
           The <code>BadgeList</code> component supports a dynamic list of badges by utilising the
           <code>BadgeListItem</code> class. A specific application would provide a css that renders the list nicely.
         </p>
-        <ul wicket:id="badge-list">[]</ul>
+
+        <div class="item">
+          <ul wicket:id="badge-list">[]</ul>
+        </div>
+        <ul class="source">
+          <li class="java">
+            <span class="corner">Java</span>
+            <pre>new BadgeList(id, Arrays.asList(
+    new BadgeListItem(Model.of(42), Model.of("Answer")),
+    new BadgeListItem(Model.of("Some string")),
+    new BadgeListItem(Model.of(9), Model.of("Alerts")) {
+        private static final long serialVersionUID = 1L;
+
+        @Override
+        public AbstractLink createLink(String id) {
+            return new BookmarkablePageLink&lt;Void&gt;(id, AlertsPage.class);
+        }
+    },
+    new BadgeListItem(Model.of(8), Model.of("Alerts")) {
+        private static final long serialVersionUID = 1L;
+
+        @Override
+        public AbstractLink createLink(String id) {
+            return new AjaxLink&lt;Void&gt;(id) {
+                private static final long serialVersionUID = 1L;
+
+                @Override
+                protected void onInitialize() {
+                    super.onInitialize();
+                    add(new ButtonBehavior(Buttons.Type.PRIMARY, Buttons.Size.MEDIUM));
+                }
+
+                @Override
+                public void onClick(AjaxRequestTarget target) {
+                    setResponsePage(AlertsPage.class);
+                }
+            };
+        }
+    })
+);</pre>
+          </li>
+          <li class="html">
+            <span class="corner">Markup</span>
+            <pre>&lt;ul wicket:id="badge-list"&gt;[]&lt;/ul&gt;</pre>
+          </li>
+        </ul>
       </section>
 
       <section>
