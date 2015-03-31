@@ -158,7 +158,11 @@ public class FilterableRepositoryDataProviderTest {
         }
 
         @Override
-        public TestModel get(Object id) {
+        public TestModel get(Object key) {
+            if(!(key instanceof Integer)) {
+                return null;
+            }
+            Integer id = (Integer) key;
             if (id == 1) {
                 return model1;
             } else if (id == 2) {
