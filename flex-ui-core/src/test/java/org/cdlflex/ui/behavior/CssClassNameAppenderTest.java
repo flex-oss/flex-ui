@@ -13,7 +13,10 @@
  */
 package org.cdlflex.ui.behavior;
 
+import static org.hamcrest.CoreMatchers.hasItem;
+import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 
 import java.io.Serializable;
@@ -57,7 +60,10 @@ public class CssClassNameAppenderTest extends AbstractWicketTest {
 
         TagTester tag = createTagById(render(page), "label");
 
-        assertEquals("b a", tag.getAttribute("class"));
+        List<String> classes = Arrays.asList(tag.getAttribute("class").split(" "));
+        assertThat(classes.size(), is(2));
+        assertThat(classes, hasItem("a"));
+        assertThat(classes, hasItem("b"));
     }
 
     @Test
@@ -87,7 +93,10 @@ public class CssClassNameAppenderTest extends AbstractWicketTest {
 
         TagTester tag = createTagById(render(page), "label-with-class");
 
-        assertEquals("label a", tag.getAttribute("class"));
+        List<String> classes = Arrays.asList(tag.getAttribute("class").split(" "));
+        assertThat(classes.size(), is(2));
+        assertThat(classes, hasItem("label"));
+        assertThat(classes, hasItem("a"));
     }
 
     @Test
@@ -98,7 +107,11 @@ public class CssClassNameAppenderTest extends AbstractWicketTest {
 
         TagTester tag = createTagById(render(page), "label-with-class");
 
-        assertEquals("b label a", tag.getAttribute("class"));
+        List<String> classes = Arrays.asList(tag.getAttribute("class").split(" "));
+        assertThat(classes.size(), is(3));
+        assertThat(classes, hasItem("a"));
+        assertThat(classes, hasItem("b"));
+        assertThat(classes, hasItem("label"));
     }
 
     @Test

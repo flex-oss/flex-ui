@@ -13,14 +13,16 @@
  */
 package org.cdlflex.ui.markup.html;
 
+import static org.hamcrest.CoreMatchers.containsString;
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.Assert.assertEquals;
 
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
 import org.apache.wicket.model.Model;
-import org.apache.wicket.util.tester.WicketTester;
 import org.junit.Test;
 
 public class TagTest {
@@ -80,7 +82,7 @@ public class TagTest {
         Tag tag = new Tag("span");
 
         tag.attr("bar", "baz");
-        Map<String, Object> map = new LinkedHashMap<>();
+        Map<String, Object> map = new HashMap<>();
         map.put("foo", "bar");
         map.put("answer", "42");
         map.put("string", new StringModel("stringModel"));
@@ -88,8 +90,17 @@ public class TagTest {
 
         tag.attrs(map);
 
-        assertEquals("<span string=\"stringModel\" answer=\"42\" list=\"foo bar\" foo=\"bar\" bar=\"baz\"></span>",
-                tag.toString());
+        String html = tag.toMarkup();
+        String expected =
+            "<span string=\"stringModel\" answer=\"42\" list=\"foo bar\" foo=\"bar\" bar=\"baz\"></span>";
+
+        assertEquals(expected.length(), html.length());
+        assertThat(html, containsString("string=\"stringModel\""));
+        assertThat(html, containsString("answer=\"42\""));
+        assertThat(html, containsString("list=\"foo"));
+        assertThat(html, containsString("bar\""));
+        assertThat(html, containsString("foo=\"bar\""));
+        assertThat(html, containsString("bar=\"baz\""));
     }
 
     public class StringModel extends Model<String> {
