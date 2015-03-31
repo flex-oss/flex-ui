@@ -23,6 +23,8 @@ import org.apache.wicket.markup.html.list.ListItem;
  */
 public abstract class AbstractNavbarComponent<T extends Component> implements INavbarComponent<T> {
 
+    private static final long serialVersionUID = 1L;
+
     private Position position;
 
     public AbstractNavbarComponent() {

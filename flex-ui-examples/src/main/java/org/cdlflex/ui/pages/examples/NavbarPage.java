@@ -43,6 +43,8 @@ public class NavbarPage extends StripTagExamplePage {
         });
 
         navbar.add(new NavbarLink<AbstractLink>() {
+            private static final long serialVersionUID = 1L;
+
             @Override
             public AbstractLink create(String id) {
                 return new BookmarkablePageLink<>(id, NavbarPage.class).setBody(Model.of("Navbars"));
@@ -52,6 +54,8 @@ public class NavbarPage extends StripTagExamplePage {
         navbar.add(new NavbarBookmarkablePageLink(ButtonsPage.class, Model.of("Buttons")));
 
         navbar.add(new NavbarDropDown(Model.of("Dropdown")) {
+            private static final long serialVersionUID = 1L;
+
             @Override
             protected List<AbstractLink> newSubMenuButtons(String id) {
                 return Arrays.asList(new BookmarkablePageLink<>(id, NavbarPage.class).setBody(Model.of("Navbars")),
@@ -60,6 +64,8 @@ public class NavbarPage extends StripTagExamplePage {
         }.setIconType(GlyphIconType.ASTERISK));
 
         navbar.add(new NavbarDropDown(Position.RIGHT, Model.of("Dropdown")) {
+            private static final long serialVersionUID = 1L;
+
             @Override
             protected List<AbstractLink> newSubMenuButtons(String id) {
                 return Arrays.asList(new BookmarkablePageLink<>(id, NavbarPage.class).setBody(Model.of("Navbars")),

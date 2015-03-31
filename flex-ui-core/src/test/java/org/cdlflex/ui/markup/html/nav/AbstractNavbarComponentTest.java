@@ -32,6 +32,8 @@ public class AbstractNavbarComponentTest extends AbstractWicketTest {
         List<INavbarComponent<? extends Component>> components = new ArrayList<>();
 
         components.add(new AbstractNavbarComponent<Component>(Position.RIGHT) {
+            private static final long serialVersionUID = 1L;
+
             @Override
             public Component create(String id) {
                 return new Label(id, Model.of("Label"));

@@ -40,6 +40,8 @@ public class NavbarDropDownTest extends AbstractWicketTest {
         List<INavbarComponent<? extends Component>> components = new ArrayList<>();
 
         components.add(new NavbarDropDown(Model.of("DropDown"), new Model<IconType>(GlyphIconType.COG)) {
+            private static final long serialVersionUID = 1L;
+
             @Override
             protected List<AbstractLink> newSubMenuButtons(String id) {
                 return Arrays.asList(
@@ -70,6 +72,8 @@ public class NavbarDropDownTest extends AbstractWicketTest {
     public void setIconType_rendersCorrectIconInDropDown() throws Exception {
         List<INavbarComponent<? extends Component>> components = new ArrayList<>();
         NavbarDropDown dropDown = new NavbarDropDown(Model.of("DropDown")) {
+            private static final long serialVersionUID = 1L;
+
             @Override
             protected List<AbstractLink> newSubMenuButtons(String id) {
                 return Arrays.asList(

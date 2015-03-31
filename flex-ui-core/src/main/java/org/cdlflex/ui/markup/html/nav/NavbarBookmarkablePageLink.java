@@ -27,6 +27,8 @@ import org.cdlflex.ui.markup.html.link.BookmarkablePageButton;
  */
 public class NavbarBookmarkablePageLink extends NavbarLink<AbstractLink> {
 
+    private static final long serialVersionUID = 1L;
+
     private Class<? extends Page> pageClass;
     private IModel<?> displayModel;
     private PageParameters parameters;

@@ -30,6 +30,8 @@ import org.cdlflex.ui.markup.html.button.DropDownButton;
  */
 public abstract class NavbarDropDown extends AbstractNavbarComponent<DropDownButton> {
 
+    private static final long serialVersionUID = 1L;
+
     private IModel<?> displayModel;
     private IModel<IconType> iconType;
 

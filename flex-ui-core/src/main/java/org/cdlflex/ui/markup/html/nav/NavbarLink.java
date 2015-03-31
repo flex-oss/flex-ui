@@ -23,6 +23,8 @@ import org.apache.wicket.markup.html.link.AbstractLink;
  */
 public abstract class NavbarLink<T extends AbstractLink> extends AbstractNavbarComponent<T> {
 
+    private static final long serialVersionUID = 1L;
+
     public NavbarLink() {
         super();
     }

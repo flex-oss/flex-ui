@@ -15,12 +15,13 @@ package org.cdlflex.ui.markup.html.nav;
 
 import org.apache.wicket.Component;
 import org.apache.wicket.markup.html.list.ListItem;
+import org.apache.wicket.util.io.IClusterable;
 import org.cdlflex.ui.util.IComponentFactory;
 
 /**
  * INavbarComponent provides components to be rendered and a position declaration for the position within the navbar.
  */
-public interface INavbarComponent<T extends Component> extends IComponentFactory<T> {
+public interface INavbarComponent<T extends Component> extends IComponentFactory<T>, IClusterable {
 
     /**
      * Where to position the component
