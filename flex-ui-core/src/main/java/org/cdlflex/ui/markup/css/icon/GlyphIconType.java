@@ -223,7 +223,7 @@ public final class GlyphIconType extends IconType {
     public static final GlyphIconType ZOOMOUT = new GlyphIconType("zoom-out");
 
     private GlyphIconType(String cssClassName) {
-        super("glyphicon glyphicon-" + cssClassName);
+        super(cssClassName, "glyphicon glyphicon-" + cssClassName);
     }
 
     @Override

@@ -571,7 +571,7 @@ public class FontAwesomeIconType extends IconType {
     public static final FontAwesomeIconType YOUTUBE_SQUARE = new FontAwesomeIconType("youtube-square");
 
     private FontAwesomeIconType(String cssClassName) {
-        super("fa fa-" + cssClassName);
+        super(cssClassName, "fa fa-" + cssClassName);
     }
 
     @Override
