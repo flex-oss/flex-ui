@@ -28,7 +28,7 @@ import org.rauschig.wicketjs.util.options.PropertyBindingOptions;
  * A {@code DateTextField} extension that uses <a
  * href="http://eonasdan.github.io/bootstrap-datetimepicker">bootstrap-datepicker</a> as frontend and can handle a
  * specified date pattern that conforms to SimpleDatePattern.
- * <p/>
+ *
  * The components properties map to the ones of bootstrap-datepicker.
  */
 public class DateTimePicker extends DateTextField {

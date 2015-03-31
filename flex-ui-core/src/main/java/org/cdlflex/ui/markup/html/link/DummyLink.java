@@ -19,7 +19,6 @@ import org.apache.wicket.model.IModel;
 /**
  * A link that renders only its body. This can be used to border some content that may or may not be wrapped by a link.
  *
- * <p/>
  * E.g. the markup
  * 
  * <pre>

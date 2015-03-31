@@ -30,13 +30,13 @@ import org.cdlflex.ui.markup.html.repeater.data.table.ITableSkeleton;
 
 /**
  * A DataTable implementation that is optimized for the cdlflex EngineeringCockpit and its panels.
- * <p/>
+ * 
  * The main difference to Wicket's DataTable is how the toolbars are added to the markup. Top and bottom toolbars are no
  * longer added to the <code>&lt;thead&gt;</code> and <code>&lt;tfoot&gt;</code> containers, but above and below the
  * table in bootstrap row divs.
- * <p>
- * There is an additional header bar which is added to the <code>&lt;thead&gt;</code> container.
  * 
+ * There is an additional header bar which is added to the <code>&lt;thead&gt;</code> container.
+ *
  * @param <T> The model object type
  * @param <S> the type of the sorting parameter
  */
@@ -106,7 +106,7 @@ public class FlexTable<T, S> extends DataTable<T, S> {
     /**
      * This class acts as a repeater that will contain the toolbar. It makes sure that the table row group (e.g. thead)
      * tags are only visible when they contain rows in accordance with the HTML specification.
-     * <p/>
+
      * Copied from Wicket's {@code DataTable} as it is private there.
      */
     protected static final class ToolbarsContainer extends WebMarkupContainer {

@@ -31,10 +31,11 @@ import org.slf4j.LoggerFactory;
 /**
  * A Component that dynamically populates a {@link org.cdlflex.ui.markup.html.badge.BadgeList} with components provided
  * by a {@link org.cdlflex.ui.markup.html.badge.notifybar.INotifyBarComponentProvider}.
- * <p/>
+ * <p>
  * Its purpose is to bridge the gap between the {@link BadgeList} and OSGi service-based design. In an OSGi use-case,
  * one would implement an INotifyBarComponentProvider as a service aggregator, which allows INotifyBarComponents to be
  * provided from different bundles.
+ * </p>
  */
 public class NotifyBar extends Panel {
     private static final long serialVersionUID = 1L;

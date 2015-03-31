@@ -46,7 +46,7 @@ public final class Strings {
     /**
      * Takes a string of separated values, interprets them as a collection, retains unique values and joins them using
      * the separator again.
-     * <p/>
+
      * Example: A string "a b a", using a whitespace as separator, would yield "a b".
      *
      * @param separator the separator
@@ -83,13 +83,6 @@ public final class Strings {
         return str.toString();
     }
 
-    /**
-     * Joins the string values of every given object with the given separator as glue.
-     *
-     * @param separator the glue
-     * @param collection a collection of objects
-     * @return a concatenated string
-     */
     /**
      * Joins the string values of every given object with the given separator as glue.
      *

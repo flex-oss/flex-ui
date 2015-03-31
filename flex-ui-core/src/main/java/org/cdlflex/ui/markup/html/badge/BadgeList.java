@@ -27,9 +27,11 @@ import org.cdlflex.ui.behavior.CssClassNameAppender;
  * A {@link GenericPanel} that holds a ListView of {@link BadgeListItem}. By default, it wraps the link created by
  * {@link BadgeListItem#createLink(String)} around the Label and {@link org.cdlflex.ui.markup.html.badge.Badge} created
  * by the other factory methods in {@link BadgeListItem}.
- * <p/>
+ *
+ * <p>
  * By default, the {@link BadgeListItem#createLink(String)} creates a {@code org.cdlflex.ui.markup.html.link.DummyLink}
  * to disable the Link. You can control the link creation by overwriting that method of a specific item.
+ * </p>
  * 
  * <pre>
  *     &lt;li wicket:id="badges"&gt;

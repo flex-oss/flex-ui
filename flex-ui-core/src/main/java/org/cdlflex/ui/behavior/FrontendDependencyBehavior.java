@@ -28,9 +28,11 @@ import org.cdlflex.ui.util.ResourceReferences;
  * Behavior that adds all added ResourceReferences as HeaderItems to the IHeaderResponse. It distinguishes between
  * JavaScriptResourceReference (added as JavaScriptHeaderItem) and CssResourceReference (added as
  * CssReferenceHeaderItem).
- * <p/>
- * <strong>Example</strong><br/>
+ *
+ * <p>
+ * <strong>Example</strong><br>
  * In a Component this can be used to add references to the Header when the page renders
+ * </p>
  * 
  * <pre>
  * getPage().add(new FrontendDependencyBehavior(new JavaScriptResourceReference(...));

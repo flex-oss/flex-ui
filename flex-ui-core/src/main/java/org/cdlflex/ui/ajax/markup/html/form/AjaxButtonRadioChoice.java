@@ -34,7 +34,7 @@ import org.rauschig.wicketjs.ajax.JsAjaxCallListener;
 
 /**
  * ButtonRadioChoice with ajax onChange behavior listeners.
- * <p/>
+ * 
  * Notice: This isn't very well implemented, because it works around a discrepancy between bootstrap's 'data-toggle' for
  * radio buttons (inherited from ButtonRadioChoice) and Wickets AjaxFormChoiceComponentUpdatingBehavior. Bootstrap
  * somehow causes the event bubbling to stop, which means that the wicket ajax event is never called. The front-end

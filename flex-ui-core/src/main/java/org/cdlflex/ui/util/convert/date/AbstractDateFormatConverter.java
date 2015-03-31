@@ -45,7 +45,7 @@ public abstract class AbstractDateFormatConverter implements DateFormatConverter
     /**
      * Called by {@link #convert(String)} when {@link #hasMappedToken(String)} returns true, but the return value of
      * {@link #getMappedToken(String)} is null, meaning that the given token can not be mapped.
-     * <p/>
+
      * Throws an UnsupportedOperationException by default.
      * 
      * @param token the token for which no mapping exists
@@ -57,7 +57,7 @@ public abstract class AbstractDateFormatConverter implements DateFormatConverter
     /**
      * Returns true if this DateFormatConverter has special escape characters that should be converted also. In that
      * case, the {@link #convertEscapes(StringBuilder)} method is called.
-     * <p/>
+     *
      * Returns false by default, can be overridden by sub-classes.
      * 
      * @return true if this DateFormatConverter should convert escape characters

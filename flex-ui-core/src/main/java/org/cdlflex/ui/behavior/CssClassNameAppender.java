@@ -26,8 +26,8 @@ import org.cdlflex.ui.util.Strings;
 /**
  * A CssClassNameAppender is an AttributeAppender that appends given strings to the <code>class</code> html attribute.
  * It keeps classes unique within one attribute, making the operation idempotent.
- * <p/>
- * Example: <br/>
+ *
+ * Example:
  * The markup
  * 
  * <pre>

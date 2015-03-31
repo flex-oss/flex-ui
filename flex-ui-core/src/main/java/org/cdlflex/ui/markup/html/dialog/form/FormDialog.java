@@ -27,12 +27,13 @@ import org.rauschig.wicketjs.markup.html.JsLink;
 
 /**
  * A Dialog that is expected to hold a form.
- * <p/>
+ * <p>
  * It autonomously adds two buttons to the dialog, a close and submit button, for which the display models can be
  * controlled. The form returned by {@code #newForm(IModel)} is added by the Dialog, but it is expected that the
  * extended dialog template provides the markup and wicket-id for the form itself. (This is necessary because of markup
  * boundaries of dialog and form. The form is inside of the modal-body but the buttons are required to be in the
  * modal-footer.)
+ * </p>
  * 
  * @param <T> The dialog and form model object type
  */

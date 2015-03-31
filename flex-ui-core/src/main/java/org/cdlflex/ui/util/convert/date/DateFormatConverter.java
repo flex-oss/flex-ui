@@ -30,12 +30,9 @@ public interface DateFormatConverter {
 
     /**
      * A tokenizer for DateFormat strings. Essentially it groups equivalent adjacent characters.
-     * <p/>
-     * <strong>Example:</strong> <br/>
-     * "yyyy-mm-dd" would result in 5 tokens ["yyyy", "-", "mm", "-", "dd"]
-     * 
-     * <p/>
-     * 
+     *
+     * Example: "yyyy-mm-dd" would result in 5 tokens ["yyyy", "-", "mm", "-", "dd"]
+     *
      * Based on https://svn.apache.org/repos/asf/poi/trunk/src/java/org/apache/poi/ss/util/DateFormatConverter.java
      */
     public static class DateFormatTokenizer {
