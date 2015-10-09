@@ -11,25 +11,19 @@
  *    See the License for the specific language governing permissions and
  *    limitations under the License.
  */
-package org.cdlflex.ui.util;
+package org.cdlflex.ui.util.function;
 
 import java.io.Serializable;
-
-import org.apache.wicket.Component;
+import java.util.function.BiConsumer;
 
 /**
- * Generic Factory for Wicket Component objects.
- * 
- * @param <T> the concrete Component type
+ * A serializable BiConsumer.
+ *
+ * @param <T> the type of the first argument to the operation
+ * @param <U> the type of the second argument to the operation
  */
 @FunctionalInterface
-public interface IComponentFactory<T extends Component> extends Serializable {
-
-    /**
-     * Creates a new component using the given component id.
-     * 
-     * @param id the component id
-     * @return a new component that uses the given id
-     */
-    T create(String id);
+public interface SerializableBiConsumer<T, U> extends BiConsumer<T, U>, Serializable {
+    @Override
+    void accept(T t, U u);
 }

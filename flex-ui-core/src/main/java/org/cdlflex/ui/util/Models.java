@@ -13,6 +13,8 @@
  */
 package org.cdlflex.ui.util;
 
+import java.util.Optional;
+
 import org.apache.wicket.model.IModel;
 
 /**
@@ -21,6 +23,18 @@ import org.apache.wicket.model.IModel;
 public final class Models {
     private Models() {
 
+    }
+
+    /**
+     * Returns an Optional describing the object value of the given model. If the model or the object in the model is
+     * null, an empty optional is returned.
+     * 
+     * @param model the possibly-null value to describe
+     * @param <T> the model object type
+     * @return an Optional
+     */
+    public static <T> Optional<T> optional(IModel<T> model) {
+        return Optional.ofNullable(model).map(IModel::getObject);
     }
 
     /**

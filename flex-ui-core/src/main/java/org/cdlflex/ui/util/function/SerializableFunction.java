@@ -11,25 +11,19 @@
  *    See the License for the specific language governing permissions and
  *    limitations under the License.
  */
-package org.cdlflex.ui.util;
+package org.cdlflex.ui.util.function;
 
 import java.io.Serializable;
-
-import org.apache.wicket.Component;
+import java.util.function.Function;
 
 /**
- * Generic Factory for Wicket Component objects.
+ * A serializable Function.
  * 
- * @param <T> the concrete Component type
+ * @param <T> the type of the input to the function
+ * @param <R> the type of the result of the function
  */
 @FunctionalInterface
-public interface IComponentFactory<T extends Component> extends Serializable {
-
-    /**
-     * Creates a new component using the given component id.
-     * 
-     * @param id the component id
-     * @return a new component that uses the given id
-     */
-    T create(String id);
+public interface SerializableFunction<T, R> extends Function<T, R>, Serializable {
+    @Override
+    R apply(T t);
 }
