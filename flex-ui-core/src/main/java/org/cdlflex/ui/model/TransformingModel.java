@@ -13,12 +13,14 @@
  */
 package org.cdlflex.ui.model;
 
+import java.util.Objects;
+
 import org.apache.wicket.model.AbstractReadOnlyModel;
 import org.apache.wicket.model.IModel;
 import org.cdlflex.ui.util.function.SerializableFunction;
 
 /**
- * An AbstractReadOnlyModel that transforms the model object using a function.
+ * An AbstractReadOnlyModel that transforms another model's object using a function.
  * 
  * @param <T> the source model object type
  * @param <R> the target model object type
@@ -31,8 +33,8 @@ public class TransformingModel<T, R> extends AbstractReadOnlyModel<R> {
     private SerializableFunction<T, R> transformer;
 
     public TransformingModel(IModel<T> model, SerializableFunction<T, R> transformer) {
-        this.model = model;
-        this.transformer = transformer;
+        this.model = Objects.requireNonNull(model);
+        this.transformer = Objects.requireNonNull(transformer);
     }
 
     @Override
@@ -40,4 +42,21 @@ public class TransformingModel<T, R> extends AbstractReadOnlyModel<R> {
         return transformer.apply(model.getObject());
     }
 
+    /**
+     * Returns the transformer function.
+     * 
+     * @return a function
+     */
+    public SerializableFunction<T, R> getTransformer() {
+        return transformer;
+    }
+
+    /**
+     * Returns the model being converted.
+     * 
+     * @return a model
+     */
+    public IModel<T> getSourceModel() {
+        return model;
+    }
 }
