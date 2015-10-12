@@ -1,0 +1,22 @@
+<features name="flex-ui-features-${project.version}">
+
+  <feature name="flex-ui" version="${project.version}">
+    <feature>wicket</feature>
+
+    <bundle>mvn:org.slf4j/slf4j-api/${slf4j.version}</bundle>
+
+    <bundle>mvn:com.fasterxml.jackson.core/jackson-databind/${jackson.version}</bundle>
+    <bundle>mvn:com.fasterxml.jackson.core/jackson-annotations/${jackson.version}</bundle>
+    <bundle>mvn:com.fasterxml.jackson.core/jackson-core/${jackson.version}</bundle>
+    <bundle>mvn:org.rauschig/wicket-js/${wicket-js.version}</bundle>
+
+    <bundle>mvn:org.cdlflex/flex-ui-core/${project.version}</bundle>
+  </feature>
+
+  <feature name="flex-ui-osgi" version="${project.version}">
+    <feature>pax-wicket</feature>
+    <feature>pax-wicket-blueprint</feature>
+    <feature>flex-ui</feature>
+  </feature>
+
+</features>
