@@ -41,7 +41,7 @@ public class SortableListDataProvider<T extends Serializable, S> extends ListDat
     private final SingleSortState<S> sortState = new SingleSortState<>();
 
     public SortableListDataProvider() {
-        super(new ArrayList<T>());
+        super(new ArrayList<>());
     }
 
     public SortableListDataProvider(List<T> list) {
@@ -106,7 +106,7 @@ public class SortableListDataProvider<T extends Serializable, S> extends ListDat
      * @param ascending whether or not to sort the data ascending
      */
     protected void sort(List<T> data, String propertyExpression, boolean ascending) {
-        Comparator<T> comparator = new DefaultModelPropertyValueComparator<T>(propertyExpression);
+        Comparator<T> comparator = new DefaultModelPropertyValueComparator<>(propertyExpression);
 
         if (ascending) {
             Collections.sort(data, comparator);
