@@ -27,7 +27,7 @@ import org.apache.wicket.model.Model;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
 import org.apache.wicket.util.io.IClusterable;
 import org.cdlflex.ui.behavior.CssClassNameAppender;
-import org.cdlflex.ui.markup.html.badge.notifybar.NotifyBar;
+import org.cdlflex.ui.pages.examples.AjaxPage;
 import org.cdlflex.ui.pages.examples.AlertsPage;
 import org.cdlflex.ui.pages.examples.BadgesPage;
 import org.cdlflex.ui.pages.examples.ButtonsPage;
@@ -66,6 +66,7 @@ public class ExamplePage extends BasePage {
             add(new LinkItem(DialogsPage.class, Model.of("Dialogs")));
             add(new LinkItem(TablePage.class, Model.of("Tables")));
             add(new LinkItem(FlexTablePage.class, Model.of("Flex Tables")));
+            add(new LinkItem(AjaxPage.class, Model.of("Ajax")));
         }
     };
 
