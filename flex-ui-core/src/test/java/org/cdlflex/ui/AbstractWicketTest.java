@@ -24,6 +24,7 @@ import org.apache.wicket.Page;
 import org.apache.wicket.core.util.string.ComponentRenderer;
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.mock.MockApplication;
+import org.apache.wicket.protocol.http.WebApplication;
 import org.apache.wicket.protocol.http.mock.MockHttpServletResponse;
 import org.apache.wicket.util.tester.TagTester;
 import org.apache.wicket.util.tester.WicketTester;
@@ -38,7 +39,7 @@ public class AbstractWicketTest {
 
     @Before
     public void setUpWicketTestEnvironment() throws Exception {
-        wicketTester = new WicketTester(new MockApplication());
+        wicketTester = new WicketTester(createMockApplication());
     }
 
     public WicketTester getWicketTester() {
@@ -105,5 +106,9 @@ public class AbstractWicketTest {
             }
         }
 
+    }
+
+    protected WebApplication createMockApplication() {
+        return new MockApplication();
     }
 }
