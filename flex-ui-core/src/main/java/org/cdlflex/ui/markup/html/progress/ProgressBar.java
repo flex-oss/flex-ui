@@ -29,6 +29,8 @@ import org.cdlflex.ui.model.ReadOnlyModel;
  */
 public class ProgressBar extends Panel {
 
+    private static final long serialVersionUID = 1L;
+
     private IModel<Double> valueModel;
     private IModel<String> textModel;
 

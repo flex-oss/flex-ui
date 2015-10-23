@@ -43,6 +43,21 @@
     <div wicket:id="animated"></div>
   </section>
 
+  <section>
+    <h2>Self updating AJAX behavior</h2>
+
+    <p>
+      A <code>ProgressBarUpdateBehavior</code> re-renders the <code>ProgressBar</code> it is attached to using AJAX in a
+      predefined interval, until the value reaches 100.
+    </p>
+
+    <p>
+      In this demonstration, every call increments the value.
+    </p>
+
+    <div wicket:id="ajax"></div>
+  </section>
+
 </wicket:extend>
 </body>
 </html>
