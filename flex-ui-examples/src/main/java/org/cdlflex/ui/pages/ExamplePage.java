@@ -40,6 +40,7 @@ import org.cdlflex.ui.pages.examples.IconsPage;
 import org.cdlflex.ui.pages.examples.NavbarPage;
 import org.cdlflex.ui.pages.examples.NotifyBarPage;
 import org.cdlflex.ui.pages.examples.PopoverPage;
+import org.cdlflex.ui.pages.examples.ProgressBarPage;
 import org.cdlflex.ui.pages.examples.TablePage;
 
 /**
@@ -60,6 +61,7 @@ public class ExamplePage extends BasePage {
             add(new LinkItem(IconsPage.class, Model.of("Bootstrap GlyphIcons")));
             add(new LinkItem(ButtonsPage.class, Model.of("Buttons")));
             add(new LinkItem(BadgesPage.class, Model.of("Badges")));
+            add(new LinkItem(ProgressBarPage.class, Model.of("Progress bars")));
             add(new LinkItem(PopoverPage.class, Model.of("Popovers")));
             add(new LinkItem(NotifyBarPage.class, Model.of("NotifyBar")));
             add(new LinkItem(NavbarPage.class, Model.of("Navbars")));
