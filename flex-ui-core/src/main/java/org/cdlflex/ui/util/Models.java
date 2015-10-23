@@ -38,6 +38,30 @@ public final class Models {
     }
 
     /**
+     * Nullsafe way of returning model's object.
+     *
+     * @param model the possibly-null model to extract the object from
+     * @param <T> the model object type
+     * @return the model's object, or null
+     */
+    public static <T> T getObject(IModel<T> model) {
+        return (model == null) ? null : model.getObject();
+    }
+
+    /**
+     * Nullsafe way of setting a model's object.
+     *
+     * @param model the possibly-null model to set the object in
+     * @param object the object to set
+     * @param <T> the model object type
+     */
+    public static <T> void setObject(IModel<T> model, T object) {
+        if (model != null) {
+            model.setObject(object);
+        }
+    }
+
+    /**
      * Checks whether the given Model, or the Object it wraps, is null, and returns true if either is null.
      *
      * @param model The model to check
