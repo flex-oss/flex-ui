@@ -46,6 +46,7 @@ public abstract class AjaxLazyPollingPanel<T> extends Panel {
      * <li>0: created</li>
      * <li>1: loading</li>
      * <li>2: completed</li>
+     * <li>3: error</li>
      * </ul>
      */
     private int state;
@@ -70,6 +71,9 @@ public abstract class AjaxLazyPollingPanel<T> extends Panel {
                     AjaxLazyPollingPanel.this.replace(getLazyLoadComponent(LAZY_LOAD_COMPONENT_ID));
                     target.add(AjaxLazyPollingPanel.this);
                     AjaxLazyPollingPanel.this.onTimerStop(this, target);
+                } else if (isFailed()) {
+                    stop(target);
+                    AjaxLazyPollingPanel.this.onTimerFailed(this, target);
                 } else {
                     target.add(AjaxLazyPollingPanel.this);
                     AjaxLazyPollingPanel.this.onTimerTick(this, target);
@@ -105,6 +109,15 @@ public abstract class AjaxLazyPollingPanel<T> extends Panel {
         return state == 2;
     }
 
+    /**
+     * Returns true if the execution has failed because of an exception;
+     *
+     * @return failed flag
+     */
+    public boolean isFailed() {
+        return state == 3;
+    }
+
     @Override
     protected void onBeforeRender() {
         if (!isStarted()) {
@@ -115,12 +128,14 @@ public abstract class AjaxLazyPollingPanel<T> extends Panel {
             // TODO add the future to the session?
             execute(() -> {
                 try {
-                    // TODO exception handling
                     T result = getOperation().call();
                     onAfterComplete(result);
-                    return result;
-                } finally {
                     setComplete();
+                    return result;
+                } catch (Exception e) {
+                    onException(e);
+                    setFailed();
+                    throw e;
                 }
             });
         }
@@ -164,6 +179,15 @@ public abstract class AjaxLazyPollingPanel<T> extends Panel {
     protected abstract Component getLazyLoadComponent(String id);
 
     /**
+     * Hook executed if the operation failed with an exception.
+     *
+     * @param e the caught exception
+     */
+    protected void onException(Exception e) {
+        // hook
+    }
+
+    /**
      * Hook executed after the operation has completed with the result object of the operation.
      * 
      * @param result the result object of the operation {@link #getOperation()}
@@ -193,12 +217,26 @@ public abstract class AjaxLazyPollingPanel<T> extends Panel {
         // hook
     }
 
+    /**
+     * Hook executed after an ajax polling request was made, but the execution of the operation has failed.
+     *
+     * @param timer the timer being executed
+     * @param target the ajax request target
+     */
+    protected void onTimerFailed(AbstractAjaxTimerBehavior timer, AjaxRequestTarget target) {
+        // hook
+    }
+
     private void setLoading() {
         setState(1);
     }
 
     private void setComplete() {
         setState(2);
+    }
+
+    private void setFailed() {
+        setState(3);
     }
 
     private void setState(int state) {
