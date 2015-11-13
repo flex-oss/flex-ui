@@ -15,12 +15,19 @@ package org.cdlflex.ui.util.concurrent;
 
 import java.util.concurrent.Callable;
 
+import org.apache.wicket.Session;
 import org.apache.wicket.ThreadContext;
+import org.apache.wicket.page.PageAccessSynchronizer;
+import org.apache.wicket.request.cycle.RequestCycle;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Util class for concurrency related mechanics.
  */
 public final class ThreadUtils {
+
+    private static final Logger LOG = LoggerFactory.getLogger(ThreadUtils.class);
 
     private ThreadUtils() {
         // util class
@@ -48,4 +55,12 @@ public final class ThreadUtils {
     public static <V> Callable<V> associateWith(Callable<V> callable, ThreadContext context) {
         return new ApplicationCallable<>(callable, context);
     }
+
+    /**
+     * Frees all page locks the current thread might have.
+     */
+    public static void unlockAllPages() {
+        new SessionAccessor(Session.get()).getPageAccessSynchronizer().get().unlockAllPages();
+    }
+
 }

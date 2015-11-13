@@ -23,6 +23,8 @@ import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.util.time.Duration;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * A Panel that executes an operation in a separate thread and lets the client poll in a specified update interval
@@ -31,6 +33,8 @@ import org.apache.wicket.util.time.Duration;
  * @param <T> The operation result type
  */
 public abstract class AjaxLazyPollingPanel<T> extends Panel {
+
+    private static final Logger LOG = LoggerFactory.getLogger(AjaxLazyPollingPanel.class);
 
     private static final long serialVersionUID = 1L;
 
@@ -49,7 +53,7 @@ public abstract class AjaxLazyPollingPanel<T> extends Panel {
      * <li>3: error</li>
      * </ul>
      */
-    private int state;
+    private volatile int state;
 
     public AjaxLazyPollingPanel(String id, Duration updateInterval) {
         this(id, null, updateInterval);
@@ -127,14 +131,20 @@ public abstract class AjaxLazyPollingPanel<T> extends Panel {
             // TODO use listenable futures?
             // TODO add the future to the session?
             execute(() -> {
+                // TODO ideally we don't execute our own callable, but the provided one and use some trigger mechanisms
                 try {
                     T result = getOperation().call();
                     onAfterComplete(result);
                     setComplete();
                     return result;
                 } catch (Exception e) {
-                    onException(e);
-                    setFailed();
+                    try {
+                        onException(e);
+                    } catch (Exception inner) {
+                        LOG.error("Exception caught while handling exception", inner);
+                    } finally {
+                        setFailed();
+                    }
                     throw e;
                 }
             });
@@ -179,21 +189,24 @@ public abstract class AjaxLazyPollingPanel<T> extends Panel {
     protected abstract Component getLazyLoadComponent(String id);
 
     /**
-     * Hook executed if the operation failed with an exception.
+     * Hook executed after the operation has completed with the result object of the operation. You can not access the
+     * RequestCycle from within this function, which means you can't manipulate any wicket components that should be
+     * rendered afterwards.
      *
-     * @param e the caught exception
-     */
-    protected void onException(Exception e) {
-        // hook
-    }
-
-    /**
-     * Hook executed after the operation has completed with the result object of the operation.
-     * 
      * @param result the result object of the operation {@link #getOperation()}
      */
     protected void onAfterComplete(T result) {
         // hook
+    }
+
+    /**
+     * Hook executed if the operation failed with an exception. You can not access the RequestCycle from within this
+     * function, which means you can't manipulate any wicket components that should be rendered afterwards.
+     *
+     * @param e the caught exception
+     */
+    protected void onException(Exception e) {
+        LOG.error("An exception occurred while executing operation", e);
     }
 
     /**
@@ -241,6 +254,5 @@ public abstract class AjaxLazyPollingPanel<T> extends Panel {
 
     private void setState(int state) {
         this.state = state;
-        getPage().dirty();
     }
 }

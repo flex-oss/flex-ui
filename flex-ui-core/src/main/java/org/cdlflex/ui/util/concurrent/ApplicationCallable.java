@@ -41,6 +41,9 @@ public final class ApplicationCallable<V> implements Callable<V> {
             ThreadContext.restore(threadContext);
             return delegate.call();
         } finally {
+            // forces the thread to free all locks on pages it might have acquired during its execution (and not freed
+            // properly, because concurrency in wicket doesn't really work).
+            ThreadUtils.unlockAllPages();
             ThreadContext.detach();
         }
     }
