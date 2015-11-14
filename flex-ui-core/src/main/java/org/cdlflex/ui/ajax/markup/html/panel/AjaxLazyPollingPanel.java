@@ -14,6 +14,7 @@
 package org.cdlflex.ui.ajax.markup.html.panel;
 
 import java.util.concurrent.Callable;
+import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
 
 import org.apache.wicket.Component;
@@ -23,6 +24,7 @@ import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.util.time.Duration;
+import org.cdlflex.ui.util.concurrent.UncheckedExecutionException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -54,6 +56,11 @@ public abstract class AjaxLazyPollingPanel<T> extends Panel {
      * </ul>
      */
     private volatile int state;
+
+    /**
+     * Holds an exception that might occur during execution of the operation.
+     */
+    private volatile Exception exception;
 
     public AjaxLazyPollingPanel(String id, Duration updateInterval) {
         this(id, null, updateInterval);
@@ -122,6 +129,15 @@ public abstract class AjaxLazyPollingPanel<T> extends Panel {
         return state == 3;
     }
 
+    /**
+     * Returns the exception that occurred during execution of the operation.
+     *
+     * @return the exception, or null if none has occurred
+     */
+    public Exception getException() {
+        return exception;
+    }
+
     @Override
     protected void onBeforeRender() {
         if (!isStarted()) {
@@ -138,6 +154,7 @@ public abstract class AjaxLazyPollingPanel<T> extends Panel {
                     setComplete();
                     return result;
                 } catch (Exception e) {
+                    AjaxLazyPollingPanel.this.exception = e;
                     try {
                         onException(e);
                     } catch (Exception inner) {
@@ -231,13 +248,16 @@ public abstract class AjaxLazyPollingPanel<T> extends Panel {
     }
 
     /**
-     * Hook executed after an ajax polling request was made, but the execution of the operation has failed.
+     * Hook executed after an ajax polling request was made, but the execution of the operation has failed. By default
+     * it re-throws the exception that was caught during execution.
      *
      * @param timer the timer being executed
      * @param target the ajax request target
      */
     protected void onTimerFailed(AbstractAjaxTimerBehavior timer, AjaxRequestTarget target) {
-        // hook
+        if (exception != null) {
+            throw new UncheckedExecutionException(exception);
+        }
     }
 
     private void setLoading() {
