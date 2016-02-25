@@ -20,7 +20,7 @@ public class FontAwesomeCssResourceReference extends ManagedCssResourceReference
 
     private static final long serialVersionUID = 1L;
 
-    public static final String DEFAULT_VERSION = "4.2.0";
+    public static final String DEFAULT_VERSION = "4.5.0";
 
     private static final FontAwesomeCssResourceReference INSTANCE = new FontAwesomeCssResourceReference();
 
