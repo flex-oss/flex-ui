@@ -35,6 +35,7 @@ public class FlexTablePage extends ExamplePage {
 
     public FlexTablePage() {
         add(newFlexTable("flex-table"));
+        add(newFlexTablePagination("flex-table-pagination"));
     }
 
     private Component newFlexTable(String id) {
@@ -49,6 +50,22 @@ public class FlexTablePage extends ExamplePage {
                         return null;
                     }
                 })
+                .data(Person.createExampleData()).create(id);
+    }
+
+    private Component newFlexTablePagination(String id) {
+        return new DefaultFlexTableBuilder<Person, String>()
+                .add(new PropertyColumn<Person, String>(Model.of("Name"), "name", "name"))
+                .add(new DatePropertyColumn<Person, String>(Model.of("Birthday"), "birthday", "birthday"))
+                .add(new ActionsColumn<Person, String>(Model.of("")) {
+                    private static final long serialVersionUID = 1L;
+
+                    @Override
+                    protected List<AbstractLink> createActions(String componentId, IModel<Person> rowModel, DataTableCell<Person, String> cell) {
+                        return null;
+                    }
+                })
+                .set(2)
                 .data(Person.createExampleData()).create(id);
     }
 }
