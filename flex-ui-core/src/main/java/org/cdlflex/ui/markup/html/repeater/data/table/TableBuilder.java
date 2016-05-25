@@ -90,6 +90,17 @@ public class TableBuilder<T, S> implements ITableSkeleton<T, S> {
     }
 
     /**
+     * Sets a list of columns.
+     *
+     * @param columns the list of columns to add
+     * @return this for chaining
+     */
+    public TableBuilder<T, S> columns(List<IColumn<T, S>> columns) {
+        getColumns().addAll(columns);
+        return this;
+    }
+
+    /**
      * Sets the rows per page displayed. Defaults to Integer.MAX_VALUE. Alias for {@code #rows(Integer)}.
      * 
      * @param rows rows per page
