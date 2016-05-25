@@ -15,6 +15,7 @@ package org.cdlflex.ui.markup.html.repeater.data.table.flex;
 
 import org.apache.wicket.markup.html.navigation.paging.IPageable;
 import org.apache.wicket.markup.html.navigation.paging.IPagingLabelProvider;
+import org.apache.wicket.markup.html.navigation.paging.PagingNavigation;
 
 /**
  * PageNavigation.
@@ -29,5 +30,10 @@ public class PagingNavigator extends org.apache.wicket.markup.html.navigation.pa
 
     public PagingNavigator(String id, IPageable pageable, IPagingLabelProvider labelProvider) {
         super(id, pageable, labelProvider);
+    }
+
+    @Override
+    protected PagingNavigation newNavigation(String id, IPageable pageable, IPagingLabelProvider labelProvider) {
+        return new FlexPagingNavigation(id, pageable, labelProvider);
     }
 }

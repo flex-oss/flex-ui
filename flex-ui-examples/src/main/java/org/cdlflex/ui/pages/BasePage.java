@@ -21,6 +21,7 @@ import org.cdlflex.ui.behavior.FrontendDependencyBehavior;
 import org.cdlflex.ui.resource.BootstrapCssResourceReference;
 import org.cdlflex.ui.resource.BootstrapJsResourceReference;
 import org.cdlflex.ui.resource.BootstrapThemeResourceReference;
+import org.cdlflex.ui.resource.FontAwesomeCssResourceReference;
 
 /**
  * Base page containing the general bootstrap layout.
@@ -46,6 +47,7 @@ public abstract class BasePage extends WebPage {
         super.onInitialize();
 
         add(new FrontendDependencyBehavior(BootstrapCssResourceReference.get(), BootstrapJsResourceReference.get(),
-                BootstrapThemeResourceReference.get(), new CssResourceReference(BasePage.class, "style.css")));
+                BootstrapThemeResourceReference.get(), FontAwesomeCssResourceReference.get(),
+                new CssResourceReference(BasePage.class, "style.css")));
     }
 }
