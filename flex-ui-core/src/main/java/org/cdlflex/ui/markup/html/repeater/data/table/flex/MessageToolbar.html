@@ -15,13 +15,20 @@
 
 -->
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:wicket="http://wicket.apache.org">
+<head>
+  <wicket:head>
+    <style type="text/css">
+      .cdlflex-table-message-toolbar label {
+        margin-top: 5px;
+      }
+    </style>
+  </wicket:head>
+</head>
 <body>
 <wicket:panel>
-  <div class="row">
-    <div class="col-md-12">
-      <div class="cdlflex-table-length">
-        <label wicket:id="msg">[message]</label>
-      </div>
+  <div class="col-md-12">
+    <div class="cdlflex-table-message-toolbar">
+      <label wicket:id="msg">[message]</label>
     </div>
   </div>
 </wicket:panel>
